@@ -1,0 +1,33 @@
+header {
+    background: none;
+}
+header h1 {
+    color: #80368f;
+}
+header .question {
+    border: 1px solid #a3a8b0;
+    border-radius: 10px;
+}
+header p {
+    color: #a3a8b0;
+}
+.section-contact h1 {
+    color: #80368f;
+}
+.section-contact input, textarea {
+    background: transparent;
+    border: #a3a8b0 1px solid !important;
+}
+.section-contact .btn {
+    background-color: #80368f;
+    color: #fff;
+    font-weight: 500;
+}
+.section-contact .btn:hover {
+    background-color: #fff;
+    color: #80368f;
+    font-weight: 500;
+}
+header i {
+    color: #80368f;
+}
