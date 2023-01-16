@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Facade;
+use RealRashid\SweetAlert\SweetAlertServiceProvider;
 
 return [
 
@@ -163,6 +164,7 @@ return [
     Illuminate\Translation\TranslationServiceProvider::class,
     Illuminate\Validation\ValidationServiceProvider::class,
     Illuminate\View\ViewServiceProvider::class,
+    SweetAlertServiceProvider::class,
 
     /*
          * Package Service Providers...
@@ -193,7 +195,8 @@ return [
 
   'aliases' => Facade::defaultAliases()->merge([
     // ...
-    'Helper' => App\Helpers\Helpers::class
+    'Helper' => App\Helpers\Helpers::class,
+    'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
   ])->toArray(),
 
 ];
