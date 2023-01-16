@@ -37,8 +37,6 @@
         <form class="edit-user pt-0" action="{{ route('user.update') }}" method="POST">
             @csrf
             <input type="hidden" value="{{ $user->id }}" name="id">
-
-
             <div class="mb-3">
                 <label class="form-label" for="add-user-fullname">Full Name</label>
                 <input type="text" class="form-control @error('name') is-invalid @enderror" id="add-user-fullname"
