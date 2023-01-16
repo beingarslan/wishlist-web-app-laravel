@@ -16,7 +16,7 @@
 
     <div class="container bg-white p-4 rounded">
         <h1>Create a new user</h1>
-        <form class="add-new-user pt-0" action="{{ route('user.store') }}" method="POST">
+        <form class="add-new-user pt-0" id="addUserForm" action="{{ route('user.store') }}" method="POST">
             @csrf
             <div class="mb-3">
                 <label class="form-label" for="add-user-fullname">Full Name</label>
@@ -56,7 +56,7 @@
                     <option value="Canada">Canada</option>
                     <option value="China">China</option>
                     <option value="France">France</option>
-                    
+
                     <option value="South Africa">South Africa</option>
                     <option value="Thailand">Thailand</option>
                     <option value="Turkey">Turkey</option>
@@ -101,8 +101,22 @@
     <script src="{{ asset('assets/vendor/libs/cleavejs/cleave.js') }}"></script>
     <script src="{{ asset('assets/vendor/libs/cleavejs/cleave-phone.js') }}"></script>
     <script src="{{ asset('assets/vendor/libs/sweetalert2/sweetalert2.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"
+        integrity="sha512-rstIgDs0xPgmG6RX1Aba4KV5cWJbAMcvRCVmglpam9SoHZiUCyQVDdH2LPlxoHtrv17XWblE/V/PP+Tr04hbtA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 @endsection
 
 @section('page-script')
-
+    <script>
+        $("#addUserForm").validate({
+            rules: {
+                name: {
+                    required: true
+                },
+                email: {
+                    required: true
+                }
+            }
+        });
+    </script>
 @endsection

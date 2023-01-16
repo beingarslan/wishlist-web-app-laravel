@@ -116,7 +116,7 @@ class UserController extends Controller
             $user->email = $request->email;
             $user->save();
             Alert::success('Success', 'User has been created successfully');
-            return redirect()->route('user.home');
+            return redirect()->back();
         } catch (\Throwable $th) {
             // throw $th;
             Alert::error('Error', 'Something went wrong');
