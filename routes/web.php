@@ -51,6 +51,6 @@ Route::group(
                 Route::delete('/delete/{id}', [UserController::class, 'destroy'])->name('destroy');
                 Route::get('/{id}', [UserController::class, 'show'])->name('show');
             }
-        );        
+        );
     }
 );
