@@ -7,6 +7,7 @@ use App\Http\Controllers\GuestController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\GuestWishlistController;
 use App\Http\Controllers\laravel_example\UserManagement;
 
 
@@ -90,5 +91,31 @@ Route::group(
               Route::get('/{id}', [CategoryController::class, 'show'])->name('show');
           }
       );
-    }
+    Route::group(
+      [
+          'prefix' => 'guest',
+          'as' => 'guest.'
+      ],
+      function () {
+
+          Route::group(
+              [
+                  'prefix' => 'wishlist',
+                  'as' => 'wishlist.'
+              ],
+              function () {
+                Route::get('/', [GuestWishlistController::class, 'index'])->name('home');
+                // Route::get('/index', [GuestWishlistController::class, 'index'])->name('index');
+                // Route::get('/list', [GuestWishlistController::class, 'list'])->name('list');
+                // Route::get('/create', [GuestWishlistController::class, 'create'])->name('create');
+                Route::post('store', [GuestWishlistController::class, 'store'])->name('store');
+                // Route::get('/edit/{id}', [GuestWishlistController::class, 'edit'])->name('edit');
+                Route::post('/update', [GuestWishlistController::class, 'update'])->name('update');
+                // Route::delete('/delete/{id}', [GuestWishlistController::class, 'destroy'])->name('destroy');
+                // Route::get('/{id}', [GuestWishlistController::class, 'show'])->name('show');
+              }
+          );
+      }
+    );
+  }
 );

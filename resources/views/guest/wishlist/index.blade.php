@@ -154,7 +154,7 @@
                       <button type="button" class="btn-close" data-bs-dismiss="modal"
                           aria-label="Close"></button>
                   </div>
-                    <form method="post" action="{{ route('wishlist.store') }}"
+                    <form method="post" action="{{ route('guest.wishlist.store') }}"
                           enctype="multipart/form-data">
                           @csrf
                       <div class="modal-body">
@@ -168,14 +168,41 @@
                           <div class="form-group my-2">
                               <input class="form-control rounded" type="text" placeholder="Url" name="url">
                           </div>
-                          <div class="form-group my-2">
+                          <div class="my-2">
+                              <label class="form-label" for="basic-icon-default-email">Image</label>
+                              <div class="image-preview text-center">
+                                  <input class="form-control" type="file"
+                                      onchange="readURL(this)" name="image" data-update="yes"
+                                      id="formFileMultiple" class="image-input" accept="image/*" />
+                               </div>
+                          </div>
+                          <br>
+                          <div class="my-2">
+
+                              @foreach ($categories as $cat)
+                                <input class="form-check-input" type="checkbox" value="{{ $cat->id }}" id="flexCheckDefault-{{$cat->id}}" name='categories[]'>
+                                <label class="form-check-label" for="flexCheckDefault">
+                                {{ $cat->name }}
+                              </label>
+                          @endforeach
+
+                          </div>
+
+                          <div class="form-check mb3">
+                            <input class="form-check-input" name='repeat' type="checkbox" value="1" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                              Allow Repeat Purchases
+                            </label>
+                          </div>
+
+                          {{-- <div class="form-group my-2">
                               <label class="text-start" for="">Select Image</label>
                               <input id="" class="profileBtn form-control rounded" type="file" name="image">
                           </div>
                           <div class="old-img my-2">
                               <img class="img img-responsive w-50 profileImage" id="wishImage"
                                   src="{{ asset('front-end/img/avatar/7.jpg')}}" alt="">
-                          </div>
+                          </div> --}}
                       </div>
                       <div class="modal-footer">
                           <button type="button" class="btn btn-secondary"
@@ -188,19 +215,21 @@
       </div>
   </div>
   <div class="container text-center">
-      <div class="row gap-auto">
-          <div class="col-lg-3 col-md-3 col-sm-6 col-12 p-2 shadow-hover">
+    <div class="row gap-auto">
+      @foreach ($wishlist as $wish)
+        <div class="col-lg-3 col-md-3 col-sm-6 col-12 p-2 shadow-hover">
               <!--data-bs-toggle="modal" data-bs-target="#editModel"
               class="btn btn-primary py-2 text-capitalize text-center align-items-center"-->
-              <div class="card product-card border-0 " data-bs-toggle="modal" data-bs-target="#aboutcard">
+
+              <div class="card product-card border-0 " data-bs-toggle="modal" data-bs-target="#aboutcard-{{$wish->id}}">
                   <a class="btn btn-sm absolute top right" href="#">
                       <i class="far fa-heart"></i> </a>
                   <a class="card-img-top d-block overflow-hidden" href="#">
-                      <img src="{{ asset('front-end/img/gift_images/photo_1.avif')}}" class="w-100 card-img" height="300px" alt=""></a>
+                      <img src="{{ asset($wish->image)}}" class="w-100 card-img" height="300px" alt=""></a>
                   <div class="card-body">
                       <div class="justify-content-between flex-wrap">
                           <div class="product-price text-start">
-                              <span class="light text-capitalize">grani</span>
+                              <span class="light text-capitalize">{{$wish->name}}</span>
                           </div>
 
                       </div>
@@ -211,61 +240,76 @@
 
                   </div>
               </div>
-              <div class="modal fade" id="aboutcard" tabindex="-1" aria-labelledby="aboutcard"
+
+              <div class="modal fade" id="aboutcard-{{$wish->id}}" tabindex="-1" aria-labelledby="aboutcard"
                   aria-hidden="true">
                   <div class="modal-dialog modal-dialog-centered">
                       <div class="modal-content">
                           <div class="modal-header">
                               <h5 class="modal-title text-capitalize text-info m-auto"
-                                  id="exampleModalLabel ">edit profile</h5>
+                                  id="exampleModalLabel ">edit wish</h5>
                               <button type="button" class="btn-close btn-info" data-bs-dismiss="modal"
                                   aria-label="Close"></button>
                           </div>
                           <div>
-                              <form id="edit-wish-form" autocomplete="off"
+                            <form id="edit-wish-form" action="{{ route('guest.wishlist.update') }}" method="POST"
+                                  enctype="multipart/form-data"
                                   class="align-content-center justify-content-between flex-column overflow-y text-center">
+                                  @csrf
+                                  <input type="hidden" name="id" value="{{$wish->id}}"/>
                                   <div>
-                                      <div>
-                                          <img src="{{ asset('front-end/img/gift_images/photo_1.avif')}}" alt="product" style="width: 161px;">
+                                    <div class="container py-2">
+                                        <label class="form-label" for="basic-icon-default-email">Image</label>
+                                        <div class="image-preview text-center">
+                                            <input class="form-control" type="file"
+                                                onchange="readURL(this)" name="image" data-update="yes"
+                                                id="formFileMultiple" class="image-input" accept="image/*" />
+                                            <div class="image-updated  mt-3 ">
+                                                <img src="{{ asset( $wish->image) }}"
+                                                    alt="" class="mh-15 w-25">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{-- <div>
+                                          <img src="{{ asset($wish->image)}}" alt="product" style="width: 161px;">
                                           <div>
                                               <input type="file" accept="image/x-png,image/gif,image/jpeg"
                                                   style="display: none;">
                                               <p style="text-decoration: underline; font-size: 0.8em;">Upload
                                                   Custom Photo</p>
                                           </div>
-                                      </div>
+                                      </div> --}}
                                       <p class="text-alternate">Edit Wish Info</p>
-                                      <div class="mb-2 container">
-                                          <div class="form-group">
-                                              <label data-shrink="false" class="form-control">
-                                                  <input class="form-control bg-light border-0" type="text"
-                                                      maxlength="30" minlength="3" placeholder="Product Name">
-                                              </label>
-
-                                          </div>
-
-                                      </div>
-                                      <div class="mb-2 container">
-                                          <div class="form-group">
-                                              <label data-shrink="false" class="form-control">
-                                                  <input class="form-control bg-light border-0" type="text"
-                                                      maxlength="30" minlength="3"
-                                                      placeholder="URL(optional)">
-                                              </label>
-
-                                          </div>
-
-                                      </div>
+                                      <div>
+                                        <div class="container py-2">
+                                            <div class="input-group">
+                                                <span class="input-group-text p-2">
+                                                    Name
+                                                </span>
+                                                <input type="text" name="name" class="form-control" placeholder="" value="{{$wish->name}}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                      <div>
+                                        <div class="container py-2">
+                                            <div class="input-group">
+                                                <span class="input-group-text p-2">
+                                                    Url
+                                                </span>
+                                                <input type="text" name="url" class="form-control" placeholder="Url" value="{{$wish->url}}">
+                                            </div>
+                                        </div>
+                                    </div>
                                       <div>
                                           <div class="container py-2">
                                               <div class="input-group">
-                                                  <span class="input-group-text">
-                                                      <i class="fas fa-euro-sign"></i>
+                                                  <span class="input-group-text p-2">
+                                                      Price
                                                   </span>
-                                                  <input type="text" class="form-control" placeholder="Price">
+                                                  <input name="price" type="text" class="form-control" placeholder="Price" value="{{$wish->price}}">
                                                   <span class="input-group-text">
-                                                      <i
-                                                          class=" fas fa-solid fa-question bg-dark text-light rounded-pill p-2"></i></span>
+                                                    <i class="fas fa-solid fa-question bg-dark text-light rounded-pill p-2"></i>
+                                                  </span>
                                               </div>
                                               <span class="small text-start">
                                                   Don't forget to add to the total to cover shipping and tax.
@@ -274,19 +318,13 @@
                                       </div>
                                       <div class="w-90 m-auto border rounded-3 p-2">
                                           <div class="gap-2 d-flex">
-                                              <span class="bold">
-                                                  Categories:
-                                              </span>
-                                              <div tabindex="0" role="button" id="chip-category-bar">
-                                                  <span class="">bar</span>
-                                                  <svg class="" focusable="false" aria-hidden="true"
-                                                      viewBox="0 0 24 24" data-testid="CancelIcon"></svg>
-                                              </div>
-                                              <div tabindex="0" role="button" id="chip-category-bar">
-                                                  <span class="">other</span>
-                                                  <svg class="" focusable="false" aria-hidden="true"
-                                                      viewBox="0 0 24 24" data-testid="CancelIcon"></svg>
-                                              </div>
+                                              <span class="bold">Categories:</span>
+                                              @foreach ($categories as $cat)
+                                              <input class="form-check-input" type="checkbox" value="{{ $cat->id }}" id="flexCheckDefault-{{$cat->id}}" name='categories[]'>
+                                              <label class="form-check-label" for="flexCheckDefault">
+                                              {{ $cat->name }}
+                                            </label>
+                                        @endforeach
                                           </div>
                                           <div class="text-center d-block">
                                               <button class="btn btn-outline-info btn-rounded m-auto"
@@ -299,7 +337,11 @@
                                           <div class="container py-2 text-start">
                                               <div class="text-black mx-2"
                                                   style="font-family: Nunito, Roboto, 'Helvetica Neue', Arial, sans-serif;">
-                                                  <input type="checkbox" id="clickboth">
+                                                  @if($wish->repeat)
+                                                    <input type="checkbox" id="clickboth" name="repeat" value='1' checked>
+                                                  @else
+                                                    <input type="checkbox" id="clickboth" name="repeat" value='0'>
+                                                  @endif
                                                   <label for="clickboth">Allow Repeat Purchases</label>
                                                   <!-- <input type="checkbox">
                                                   Allow Repeat Purchases -->
@@ -315,7 +357,7 @@
                                                   Wish</button>
                                           </div>
                                           <div class="text-end py-3 container">
-                                              <button type="button"
+                                              <button type="submit" value='submit'
                                                   class="btn btn-info btn-lg ms-auto border-0 text-uppercase form-control">Update</button>
                                           </div>
                                       </div>
@@ -327,7 +369,11 @@
               </div>
               <!-- <hr class="d-sm-none"> -->
           </div>
-          <div class="col-lg-3 col-md-3 col-sm-6 col-12 p-2 shadow-hover">
+        @endforeach
+
+
+
+          {{-- <div class="col-lg-3 col-md-3 col-sm-6 col-12 p-2 shadow-hover">
               <div class="card product-card border-0">
                   <a class="btn btn-sm absolute top right" href="#">
                       <i class="far fa-heart"></i> </a>
@@ -346,7 +392,7 @@
                   </div>
               </div>
               <hr class="d-sm-none">
-          </div>
+          </div> --}}
           {{-- <div class="col-lg-3 col-md-3 col-sm-6 col-12 p-2 shadow-hover">
               <div class="card product-card border-0">
                   <a class="btn btn-sm absolute top right" href="#">
@@ -417,6 +463,30 @@
       </div>
   </div>
 </section>
+
+<script>
+  function readURL(input) {
+      //get data-update
+      var update = $(input).attr('data-update');
+      console.log(update);
+      if (input.files && input.files[0]) {
+          var reader = new FileReader();
+
+          reader.onload = function(e) {
+              if (update == 'yes') {
+                  $('.image-updated img').attr('src', "");
+                  $('.image-updated img').attr('src', e.target.result);
+              } else {
+                  $('.image-selected').show();
+                  $('.image-selected img').attr('src', e.target.result);
+              }
+          }
+
+          reader.readAsDataURL(input.files[0]);
+      }
+  }
+</script>
+
 <!-- section wishes end -->
 
 

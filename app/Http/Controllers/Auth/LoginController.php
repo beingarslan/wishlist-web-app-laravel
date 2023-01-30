@@ -54,7 +54,7 @@ class LoginController extends Controller
             return  redirect()->route('dashboard');
           else{
             // dd('something');
-            return  redirect()->route('wishlist.home');
+            return  redirect()->route('guest.wishlist.home');
           }
 
         }

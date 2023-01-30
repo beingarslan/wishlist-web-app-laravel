@@ -8,47 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class WishlistController extends Controller
-{
-    // public function index()
-    // {
-    //   $user = Auth::user();
-    //   if (!$user) {
-    //       abort(403);
-    //   }
-    //   return view('guest.wishlist.index');
-    // }
-
-    // public function store(Request $request)
-    // {
-    //   $user = Auth::user();
-    //   if (!$user) {
-    //       abort(403);
-    //   }
-    //   $validated = $request->validate([
-    //     'name' => 'required|max:200',
-    //     'url' => 'sometimes',
-    //     'Wishlist_id' => 'sometime',
-    //     'price' => 'required',
-    //     'image' => 'image|mimes:jpeg,png,jpg,svg',
-    //   ]);
-
-    //   $whish =  Wishlist::create([
-    //     'name' => $request->input('name'),
-    //     'url' => $request->input('url'),
-    //     'image' => $request->file('image'),
-    //     'Wishlist_id' => $request->input('Wishlist_id'),
-    //     'price' => $request->input('price'),
-    // ]);
-    // // dd($whish);
-    //   return redirect()->back();
-    // }
-
-
-
-
-
-
-    public function wishlist()
+{    public function wishlist()
     {
         return view('wishlist.index');
     }
