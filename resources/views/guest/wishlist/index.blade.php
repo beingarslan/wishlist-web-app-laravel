@@ -351,11 +351,7 @@
                                                   unchecked, the item will automatically delete from your
                                                   wishlist after the first purchase.</p>
                                           </div>
-                                          <div class="text-end">
-                                              <button type="button"
-                                                  class="btn btn-outline-info ms-auto border-0 text-uppercase">Delete
-                                                  Wish</button>
-                                          </div>
+
                                           <div class="text-end py-3 container">
                                               <button type="submit" value='submit'
                                                   class="btn btn-info btn-lg ms-auto border-0 text-uppercase form-control">Update</button>
@@ -363,6 +359,17 @@
                                       </div>
                                   </div>
                               </form>
+                              <div class="text-end">
+                                <form action="{{route('guest.wishlist.destroy')}}" method="post">
+                                   @csrf
+                                  <input name="id" type="hidden" value="{{$wish->id}}">
+                                  <button type="submit"
+                                  class="btn btn-outline-info ms-auto border-0 text-uppercase" id="delete-{{$wish->id}}">Delete
+                                  Wish</button>
+                                 </form>
+                      </div>
+
+
                           </div>
                       </div>
                   </div>

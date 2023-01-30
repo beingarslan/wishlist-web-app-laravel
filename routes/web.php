@@ -111,7 +111,7 @@ Route::group(
                 Route::post('store', [GuestWishlistController::class, 'store'])->name('store');
                 // Route::get('/edit/{id}', [GuestWishlistController::class, 'edit'])->name('edit');
                 Route::post('/update', [GuestWishlistController::class, 'update'])->name('update');
-                // Route::delete('/delete/{id}', [GuestWishlistController::class, 'destroy'])->name('destroy');
+                Route::post('/delete', [GuestWishlistController::class, 'destroy'])->name('destroy');
                 // Route::get('/{id}', [GuestWishlistController::class, 'show'])->name('show');
               }
           );

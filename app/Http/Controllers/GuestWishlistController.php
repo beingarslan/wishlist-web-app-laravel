@@ -69,6 +69,13 @@ class GuestWishlistController extends Controller
 
   }
 
+  public function destroy(Request $request)
+  {
+    $wishlist = Wishlist::where('id', $request->id)->delete();
+    return redirect()->back();
+    dd($request->id);
+  }
+
 
 
 }
