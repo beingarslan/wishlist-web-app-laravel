@@ -14,6 +14,19 @@
       "icon": "menu-icon tf-icons ti ti-user",
       "url": "/user",
       "slug": "user.home"
+    },
+    {
+      "name": "Categories",
+      "icon": "menu-icon tf-icons ti ti-menu",
+      "url": "/categories",
+      "slug": "categories.home"
+    },
+
+    {
+      "name": "Wishlist",
+      "icon": "menu-icon tf-icons ti ti-menu",
+      "url": "/wishlist",
+      "slug": "wishlist.home"
     }
   ]
 }

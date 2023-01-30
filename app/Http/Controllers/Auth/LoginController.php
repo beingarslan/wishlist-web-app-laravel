@@ -52,11 +52,18 @@ class LoginController extends Controller
           $user = Auth::user();
           if($user->hasRole('admin'))
             return  redirect()->route('dashboard');
-          else
-            return  redirect()->view('guest.index');
+          else{
+            // dd('something');
+            return  redirect()->route('wishlist.home');
+          }
 
         }
         else
             return redirect()->back();
+    }
+
+    public function logout(Request $request) {
+      Auth::logout();
+      return redirect('/login');
     }
 }

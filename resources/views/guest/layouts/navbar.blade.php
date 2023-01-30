@@ -28,6 +28,20 @@
                         <img src="{{ asset('front-end/img/nav-icons/3.png')}}" alt="">
                     </a>
                 </li>
+                <li class="nav-item px-0 px-md-2">
+                  @if(Auth::check())
+                      <a class="nav-link navbar-brand" style="color:#80368f" aria-current="page" href="{{url('logout')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                          Logout
+                      </a>
+                      <form method="POST" id="logout-form" action="{{ route('logout') }}">
+                        @csrf
+                    </form>
+                  @else
+                      <a class="nav-link navbar-brand" style="color:#80368f" aria-current="page" href="{{url('/login')}}">
+                          Login
+                      </a>
+                  @endif
+              </li>
             </ul>
         </div>
     </div>

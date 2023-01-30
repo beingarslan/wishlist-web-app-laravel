@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\GuestController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\laravel_example\UserManagement;
 
@@ -52,5 +54,41 @@ Route::group(
                 Route::get('/{id}', [UserController::class, 'show'])->name('show');
             }
         );
+        Route::group(
+          [
+              'prefix' => 'wishlist',
+              'as' => 'wishlist.'
+          ],
+          function () {
+              Route::get('/', [WishlistController::class, 'wishlist'])->name('home');
+              Route::get('/index', [WishlistController::class, 'index'])->name('index');
+              Route::get('/list', [WishlistController::class, 'list'])->name('list');
+              Route::get('/create', [WishlistController::class, 'create'])->name('create');
+              Route::post('store', [WishlistController::class, 'store'])->name('store');
+              Route::get('/edit/{id}', [WishlistController::class, 'edit'])->name('edit');
+              Route::post('/update', [WishlistController::class, 'update'])->name('update');
+              Route::delete('/delete/{id}', [WishlistController::class, 'destroy'])->name('destroy');
+              Route::get('/{id}', [WishlistController::class, 'show'])->name('show');
+          }
+
+      );
+
+      Route::group(
+        [
+            'prefix' => 'categories',
+            'as' => 'categories.'
+        ],
+          function () {
+              Route::get('/', [CategoryController::class, 'categories'])->name('home');
+              Route::get('/index', [CatgoryController::class, 'index'])->name('index');
+              Route::get('/list', [CategoryController::class, 'list'])->name('list');
+              Route::get('/create', [CategoryController::class, 'create'])->name('create');
+              Route::post('store', [CategoryController::class, 'store'])->name('store');
+              Route::get('/edit/{id}', [CategoryController::class, 'edit'])->name('edit');
+              Route::post('/update', [CategoryController::class, 'update'])->name('update');
+              Route::delete('/delete/{id}', [CategoryController::class, 'destroy'])->name('destroy');
+              Route::get('/{id}', [CategoryController::class, 'show'])->name('show');
+          }
+      );
     }
 );

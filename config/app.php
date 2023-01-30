@@ -180,6 +180,7 @@ return [
     App\Providers\EventServiceProvider::class,
     App\Providers\RouteServiceProvider::class,
     App\Providers\MenuServiceProvider::class,
+    Intervention\Image\ImageServiceProvider::class,
 
   ],
 
@@ -198,6 +199,7 @@ return [
     // ...
     'Helper' => App\Helpers\Helpers::class,
     'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
+    'Image' => Intervention\Image\Facades\Image::class
   ])->toArray(),
 
 ];
