@@ -190,7 +190,10 @@ class WishlistController extends Controller
 
           $wishlist->name = $request->input('name');
           $wishlist->url = $request->input('url');
-          $wishlist->image = $request->file('image');
+          if($request->hasFile('image')){
+            $wishlist->image = $request->file('image');
+        }
+
           $wishlist->price = $request->input('price');
           $wishlist->repeat = $request->input('repeat');
           $wishlist->save();
