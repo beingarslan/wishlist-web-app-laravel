@@ -27,6 +27,7 @@
                         <th>ID</th>
                         <th>Image</th>
                         <th>Name</th>
+                        <th>User</th>
                         <th>Price</th>
                         <th>Url</th>
                         <th>Repeat</th>
@@ -71,6 +72,10 @@
                     {
                         data: 'name',
                         name: 'name'
+                    },
+                    {
+                        data: 'user',
+                        name: 'user'
                     },
                     {
                         data: 'price',

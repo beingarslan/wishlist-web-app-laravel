@@ -44,6 +44,7 @@ class WishlistController extends Controller
                 foreach ($results as $row) {
                     $nestedData['id'] = $row->id;
                     $nestedData['name'] = $row->name;
+                    $nestedData['user'] = $row->user_id;
                     $nestedData['image'] = $row->image;
                     $nestedData['url'] = $row->url;
                     $nestedData['repeat'] = $row->repeat;

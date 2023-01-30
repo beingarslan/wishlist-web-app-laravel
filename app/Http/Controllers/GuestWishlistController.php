@@ -18,7 +18,8 @@ class GuestWishlistController extends Controller
         abort(403);
     }
     $categories = Category::get();
-    $wishlist = Wishlist::get();
+    $wishlist = $user->wishlist;
+
 
     return view('guest.wishlist.index', compact('categories', 'wishlist'));
   }
@@ -37,15 +38,14 @@ class GuestWishlistController extends Controller
       'image' => 'image|mimes:jpeg,png,jpg,svg',
       'repeat' => 'sometimes'
     ]);
-
     $wish =  Wishlist::create([
       'name' => $request->input('name'),
       'url' => $request->input('url'),
       'image' => $request->file('image'),
       'price' => $request->input('price'),
       'repeat' => $request->input('repeat')?$request->input('repeat'):0,
-      'user_id' => $user->id,
   ]);
+  $user->wishlist()->save($wish);
     foreach ($request->categories as $category) {
       $product =  CategoryWishlist::create([
           'category_id' => $category,
