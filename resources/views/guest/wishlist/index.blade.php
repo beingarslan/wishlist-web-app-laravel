@@ -326,11 +326,11 @@
                                             </label>
                                         @endforeach
                                           </div>
-                                          <div class="text-center d-block">
+                                          {{-- <div class="text-center d-block">
                                               <button class="btn btn-outline-info btn-rounded m-auto"
                                                   tabindex="0" type="button">Add
                                                   category<span></span></button>
-                                          </div>
+                                          </div> --}}
 
                                       </div>
                                       <div>

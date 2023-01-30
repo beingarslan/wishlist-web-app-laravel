@@ -15,11 +15,10 @@
 @section('content')
     <!-- Users List Table -->
     <div class="card">
-        <div class="card-header d-flex justify-content-between align-items-center">
+        {{-- <div class="card-header d-flex justify-content-between align-items-center">
             <h5 class="card-title mb-0">Wishlists</h5>
             <a href="/wishlist/create" class="btn btn-primary">Add Wish</a>
-            {{-- @include('user.create') --}}
-        </div>
+        </div> --}}
         <div class="card-datatable table-responsive">
             <table class="datatables-users table" id="users-table">
                 <thead class="border-top">
