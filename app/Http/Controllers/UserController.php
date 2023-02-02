@@ -6,6 +6,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 use RealRashid\SweetAlert\Facades\Alert;
+use Termwind\Components\Dd;
+use Intervention\Image\Facades\Image;
 
 class UserController extends Controller
 {
@@ -160,6 +162,40 @@ class UserController extends Controller
         }
     }
 
+    // upload cover image
+    public function uploadCoverImage(Request $request)
+    {
+      // dd($request->all());
+      // dd($request->file('cover_image'));
+        $user = User::find(auth()->user()->id);
+        if (!$user) {
+            Alert::error('Error', 'User not found');
+            return redirect()->back();
+        }
+        // $png_url = "Image-".time().".png";
+        // $path = public_path().'img/designs/' . $png_url;
+
+        // Image::make(file_get_contents($request->image))->save($path);
+        $user->cover_image = $request->file('image');
+        $user->save();
+        Alert::success('Success', 'Cover image has been updated successfully');
+        return redirect()->back();
+    }
+    // upload profile image
+    public function uploadAvatar(Request $request)
+    {
+      dd($request->all());
+      // dd($request->file('image'));
+        $user = User::find(auth()->user()->id);
+        if (!$user) {
+            Alert::error('Error', 'User not found');
+            return redirect()->back();
+        }
+        $user->avatar = $request->file('image');
+        $user->save();
+        Alert::success('Success', 'Profile image has been updated successfully');
+        return redirect()->back();
+    }
     public function destroy($id)
     {
         $users = User::where('id', $id)->delete();

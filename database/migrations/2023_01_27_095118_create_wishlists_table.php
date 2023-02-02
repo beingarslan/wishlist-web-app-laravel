@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('wishlists', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name')->nullable();
             $table->string('image')->nullable();
-            $table->boolean('repeat')->default(0);
+            $table->boolean('repeat_purchase')->default(0);
             $table->text('url')->nullable();
             $table->double('price');
             $table->foreignId('user_id')->nullable()->constrained('users')->onUpdate('cascade')->onDelete('cascade');

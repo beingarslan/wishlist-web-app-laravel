@@ -53,6 +53,10 @@ Route::group(
                 Route::post('/update', [UserController::class, 'update'])->name('update');
                 Route::delete('/delete/{id}', [UserController::class, 'destroy'])->name('destroy');
                 Route::get('/{id}', [UserController::class, 'show'])->name('show');
+                // upload image
+                Route::post('/upload/cover', [UserController::class, 'uploadCoverImage'])->name('upload-cover-image');
+                // uploadAvatar
+                Route::post('/upload/avatar', [UserController::class, 'uploadAvatar'])->name('upload-avatar-image');
             }
         );
         Route::group(
@@ -113,6 +117,7 @@ Route::group(
                 Route::post('/update', [GuestWishlistController::class, 'update'])->name('update');
                 Route::post('/delete', [GuestWishlistController::class, 'destroy'])->name('destroy');
                 // Route::get('/{id}', [GuestWishlistController::class, 'show'])->name('show');
+
               }
           );
       }

@@ -53,7 +53,6 @@ class LoginController extends Controller
           if($user->hasRole('admin'))
             return  redirect()->route('dashboard');
           else{
-            // dd('something');
             return  redirect()->route('guest.wishlist.home');
           }
 

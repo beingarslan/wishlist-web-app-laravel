@@ -18,10 +18,10 @@ class GuestWishlistController extends Controller
         abort(403);
     }
     $categories = Category::get();
-    $wishlist = $user->wishlist;
+    // $wishlist = $user->wishlist;
+    // dd($wishlist);
 
-
-    return view('guest.wishlist.index', compact('categories', 'wishlist'));
+    return view('guest.wishlist.index', compact('categories', 'user'));
   }
 
   public function store(Request $request)
@@ -43,7 +43,7 @@ class GuestWishlistController extends Controller
       'url' => $request->input('url'),
       'image' => $request->file('image'),
       'price' => $request->input('price'),
-      'repeat' => $request->input('repeat')?$request->input('repeat'):0,
+      'repeat_purchase' => $request->input('repeat_purchase')?$request->input('repeat_purchase'):0,
   ]);
   $user->wishlist()->save($wish);
     foreach ($request->categories as $category) {
@@ -63,7 +63,7 @@ class GuestWishlistController extends Controller
     }
     $wish->name = $request->input('name');
     $wish->price = $request->input('price');
-    $wish->repeat = $request->input('repeat')?$request->input('repeat'):0;
+    $wish->repeat_purchase = $request->input('repeat_purchase')?$request->input('repeat_purchase'):0;
     $wish->save();
   return redirect()->back();
 
