@@ -67,3 +67,7 @@ header .editProfile:hover {
     margin-left: 5px;
     margin-right: 5px;
 }
+
+.image-upload>input {
+  display: none;
+}

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Response;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -164,5 +165,32 @@ class UserController extends Controller
     {
         $users = User::where('id', $id)->delete();
         return response()->json('Deleted');
+    }
+    public function upload_image(Request $request)
+    {
+      dd($request);
+      try{
+
+
+      $user = Auth::user();
+      if($request->hasFile('image')){
+          $user->image = $request->file('image');
+          $user->save();
+      }
+
+        return response()->json([
+          'status' => true,
+          'message' => 'success',
+          'data' => 'done',
+      ]);
+    }
+    catch (\Throwable $th) {
+      //throw $th;
+      return response()->json([
+          'status' => false,
+          'message' => $th->getMessage(),
+          'data' => null,
+      ]);
+  }
     }
 }

@@ -25,8 +25,7 @@
           <img src="{{ asset('front-end/img/header.jpg')}}" class="img-fluid"
               style="background-repeat: no-repeat; background-position: center; " alt="">
       </div>
-      <div class="img-btn position-absolute">
-          <!--button uploaded cover images start-->
+      {{-- <div class="img-btn position-absolute">
           <form action="#type your action here" method="POST" enctype="multipart/form-data" name="coverImg">
               <div id="yourBtn" onclick="getFile()">
                   <button class="btn btn-primary btn-circle m-0 p-0 btn mt-n5 pt-n1">
@@ -37,35 +36,38 @@
                   <input id="upfile" type="file" value="upload" onchange="sub(this)" />
               </div>
           </form>
-      </div>
+      </div> --}}
   </div>
+  {{-- <form action="{{ route('user.upload') }}" method="POST" enctype="multipart/form-data"
+  name="coverImg"> --}}
+  <form method="post" id="upload_form" enctype="multipart/form-data" >
   <div class="profile-img relative">
       <div class="row mt-n8  justify-content-center ">
           <div class="col-md-2 order-1">
-              <div class="">
+              <div class="image-updated">
                   <img class="img img-fluid img-thumbnail rounded-pill" width="218px" height="218px"
-                      src="{{ asset('front-end/img/avatar/5.jpg')}}" alt="">
+                      src="{{ asset(Auth::user()->image)}}" alt="">
                   <div class="position-relative mt-n6 ms-10">
-                      <form action="#type your action here" method="POST" enctype="multipart/form-data"
-                          name="coverImg">
-                          <div id="yourBtn" onclick="getFile()">
-                              <button class="fs-6 m-0 btn btn-primary btn-circle">
-                                  <i class="fas fa-camera-retro"></i>
-                              </button>
-                          </div>
-                          <div style='height: 0px;width: 0px; overflow:hidden;'>
-                              <input id="upfile" type="file" value="upload" onchange="sub(this)" />
-                          </div>
-                      </form>
+                          @csrf
+                          <div class="image-upload fs-6 m-0 btn btn-primary btn-circle">
+                            <label for="file-input">
+                              <i class="fas fa-camera-retro"></i>
+                            </label>
+                            <input class="form-control" type="file"
+                                    onchange="readURL(this)" name="image" data-update="yes"
+                                    id="file-input" class="image-input" accept="image/*" />
+                        </div>
                   </div>
               </div>
           </div>
           <div class="col-md-8 order-2">
               <span class="text-white d-block text-capitalize mt-sm-5"
-                  style="font-size: 2rem; font-weight: 600;">patric's wishlist</span>
+                  style="font-size: 2rem; font-weight: 600;">{{Auth::user()->name}}'s wishlist</span>
               <span>@patric</span>
           </div>
       </div>
+    </form>
+
   </div>
   <div class="d-flex my-5 container">
       <div class="col-md-5 text-end">
@@ -475,12 +477,12 @@
   function readURL(input) {
       //get data-update
       var update = $(input).attr('data-update');
-      console.log(update);
       if (input.files && input.files[0]) {
           var reader = new FileReader();
 
           reader.onload = function(e) {
               if (update == 'yes') {
+                console.log(e.target.result);
                   $('.image-updated img').attr('src', "");
                   $('.image-updated img').attr('src', e.target.result);
               } else {
@@ -488,14 +490,70 @@
                   $('.image-selected img').attr('src', e.target.result);
               }
           }
-
           reader.readAsDataURL(input.files[0]);
+          form(input.files[0]);
+
+     }}
+
+    //  $('#upload_form').on('submit', function(event){
+
+      function form(file){
+  event.preventDefault();
+      $.ajax({
+            url: "{{ route('user.upload') }}",
+            type: "POST",
+                data: {
+                 _token: "{{ csrf_token() }}",
+                 dataType:'JSON',
+                 image: new FormData(file),
+                 processData: false,
+                 contentType:false,
+                 cache: false,
+                 traditional: true,
+                },
+                success: function(data) {
+                    if (data.status == true) {
+
+                      console.log('something');
+                    } else {
+                        alert(data.message);
+                    }
+                }
+            });
+          // });
       }
-  }
+
 </script>
 
 <!-- section wishes end -->
+<script>
+      $(document).ready(function () {
+            var accountUploadBtn = $('.profileBtn')
+            var accountUploadImg = $('.profileImage')
+            accountUploadBtn.on('change', function (e) {
+                var reader = new FileReader(),
+                    files = e.target.files;
+                reader.onload = function () {
+                    if (accountUploadImg) {
+                        accountUploadImg.attr('src', reader.result);
+                    }
+                };
+                reader.readAsDataURL(files[0]);
+            });
+        });
+        //button style uploade file
+        function getFile() {
+            document.getElementById("upfile").click();
+        }
 
+        function sub(obj) {
+            var file = obj.value;
+            var fileName = file.split("\\");
+            document.getElementById("yourBtn").innerHTML = fileName[fileName.length - 1];
+            document.coverImg.submit();
+            event.preventDefault();
+        }
+</script>
 
 
 

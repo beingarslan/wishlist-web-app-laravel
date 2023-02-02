@@ -53,6 +53,7 @@ Route::group(
                 Route::post('/update', [UserController::class, 'update'])->name('update');
                 Route::delete('/delete/{id}', [UserController::class, 'destroy'])->name('destroy');
                 Route::get('/{id}', [UserController::class, 'show'])->name('show');
+                Route::post('/profile-update', [UserController::class, 'upload_image'])->name('upload');
             }
         );
         Route::group(
