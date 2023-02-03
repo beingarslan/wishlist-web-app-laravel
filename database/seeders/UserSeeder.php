@@ -21,6 +21,7 @@ class UserSeeder extends Seeder
       $users = [
         [
             'name' => $faker->name,
+            'wishlist_name' => $faker->sentence(1),
             'email' => 'admin@admin.com',
             'password' => Hash::make('1234567890'),
             'created_at' => now(),
@@ -29,6 +30,7 @@ class UserSeeder extends Seeder
         ],
         [
             'name' => $faker->name,
+            'wishlist_name' =>  $faker->sentence(1),
             'email' => 'user@user.com',
             'password' => Hash::make('1234567890'),
             'created_at' => now(),
@@ -37,6 +39,7 @@ class UserSeeder extends Seeder
         ],
         [
             'name' => $faker->name,
+            'wishlist_name' =>  $faker->sentence(1),
             'email' => $faker->email,
             'password' => Hash::make('1234567890'),
             'created_at' => now(),
@@ -45,6 +48,7 @@ class UserSeeder extends Seeder
         ],
         [
             'name' => $faker->name,
+            'wishlist_name' =>  $faker->sentence(1),
             'email' => $faker->email,
             'password' => Hash::make('1234567890'),
             'created_at' => now(),
@@ -53,6 +57,7 @@ class UserSeeder extends Seeder
         ],
         [
             'name' => $faker->name,
+            'wishlist_name' =>  $faker->sentence(1),
             'email' => $faker->email,
             'password' => Hash::make('1234567890'),
             'created_at' => now(),
@@ -61,6 +66,7 @@ class UserSeeder extends Seeder
         ],
         [
             'name' => $faker->name,
+            'wishlist_name' =>  $faker->sentence(1),
             'email' => $faker->email,
             'password' => Hash::make('1234567890'),
             'created_at' => now(),

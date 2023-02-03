@@ -35,7 +35,8 @@
             @if(!$user->cover_image)
             <img src="{{ asset('front-end/img/header.jpg')}}" class="img-fluid" style="background-repeat: no-repeat; background-position: center; " alt="">
             @else
-            <img src="{{  asset($user->cover_image)}}" class="img-fluid" style="background-repeat: no-repeat; background-position: center; " alt="">
+            {{-- {{asset($user->cover_image)}} --}}
+            <img src="{{  url($user->cover_image)}}" class="img-fluid" style="background-repeat: no-repeat; background-position: center; " alt="">
             {{-- <img class="card-img-top   rounded-top-6" src="{{  asset($user->cover_image)}}" alt="Blog Post pic" height="300px" /> --}}
             @endif
 
@@ -59,7 +60,9 @@
             <div style='height: 0px;width: 0px; overflow:hidden;'>
                 <input type="file" accept="image/*" id="fileInput" name="image" class="image" />
             </div>
-            <i class='fa fa-camera' onclick="fileInput.click();"></i>
+            <button class="fs-6 m-0 btn btn-primary btn-circle" onclick="fileInput.click();">
+            <i class='fa fa-camera' ></i>
+          </button>
             {{-- </form> --}}
         </div>
 
@@ -105,19 +108,21 @@
                     <img class="img img-fluid img-thumbnail rounded-pill" width="218px" height="218px" src="{{ asset($user->avatar)}}" alt="$user->avatar">
                     @endif
                     <div class="position-relative mt-n6 ms-10">
-                        {{-- <form  action='{{ route('user.upload-avatar-image')}}' method="POST" enctype="multipart/form-data">
+                        <form  action='{{ route('user.upload-avatar-image')}}' method="POST" enctype="multipart/form-data">
                         @csrf
                         <div style='height: 0px;width: 0px; overflow:hidden;'>
-                            <input type="file" accept="image/*" id="fileInput" name="image" onchange="this.form.submit()" />
+                            <input type="file" accept="image/*" id="fileInput1" name="image" onchange="this.form.submit()" />
                         </div>
-                        <i class='fa fa-camera' onclick="fileInput.click();"></i>
-                        </form> --}}
+                        {{-- <button class="fs-6 m-0 btn btn-primary btn-circle"onclick="fileInput1.click();"> --}}
+                        <i class='fa fa-camera-retro fa-border' onclick="fileInput1.click();"></i>
+                      {{-- </button> --}}
+                        </form>
                     </div>
                 </div>
             </div>
             <div class="col-md-8 order-2">
                 <span class="text-white d-block text-capitalize mt-sm-5" style="font-size: 2rem; font-weight: 600;">{{$user->name}}</span>
-                <span>WishList</span>
+                <span>{{$user->wishlist_name}}</span>
             </div>
         </div>
     </div>
@@ -138,20 +143,21 @@
                         <h5 class="modal-title text-capitalize" id="exampleModalLabel">edit profile</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <form>
+                    <form method="POST" action="{{ route('user.update-profile') }}">
+                        @csrf
                         <div class="modal-body text-black">
                             <div class="form-group my-2">
                                 <label>Name</label>
-                                <input class="form-control" value={{$user->name}} type="text">
+                                <input class="form-control @error('name') is-invalid @enderror" name="name" placeholder="Name"  value={{$user->name}} type="text">
                             </div>
                             <div class="form-group my-2">
                                 <label>Wishlist Name</label>
-                                <input class="form-control" type="text">
+                                <input class="form-control @error('wishlist_name') is-invalid @enderror" name="wishlist_name" placeholder="Wishlist Name"  value={{$user->wishlist_name}} type="text">
                             </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save changes</button>
+                            <button type="submit" class="btn btn-primary">Save changes</button>
                         </div>
                     </form>
                 </div>
@@ -554,7 +560,7 @@
     });
     $modal.on('shown.bs.modal', function() {
         cropper = new Cropper(image, {
-            aspectRatio: 600 / 200
+            aspectRatio: 600 / 300
             , viewMode: 3
             , preview: '.preview'
         });
@@ -582,8 +588,9 @@
                         'image': base64data
                     }
                     , success: function(data) {
+                      console.log(data);
                         $modal.modal('hide');
-                        alert("Crop image successfully uploaded");
+                        // alert("Crop image successfully uploaded");
                     }
                 });
             }

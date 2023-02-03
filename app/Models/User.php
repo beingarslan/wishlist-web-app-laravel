@@ -19,7 +19,7 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, HasRoles;
 
-    public const AVATAR_PATH = 'public/avatars';
+    public const AVATAR_PATH = 'storage/avatars';
 
     /**
      * The attributes that are mass assignable.
@@ -70,6 +70,7 @@ class User extends Authenticatable
       $extension = explode('/', mime_content_type($value))[1];
 
         $temp_name = Str::random(10) . time() . '.' . $extension;
+        // dd($temp_name);
         $path = Storage::putFileAs(self::AVATAR_PATH, $value, $temp_name);
         // $this->attributes['cover_image'] = $path;
         // $png_url = "Image-".time().".png";
@@ -77,6 +78,12 @@ class User extends Authenticatable
         // dd($path);
         $this->attributes['cover_image']=Image::make(file_get_contents($value))->save($path);
         // $this->attributes['cover_image'] = ImageUploadHelper::uploadImage('wishlists', $value, $this->image, [800, 550]);
+
+       
+        $this->attributes['cover_image'] = $path;
+
+
+
     }
 
     // public function getAvatarUrlAttribute()

@@ -57,6 +57,8 @@ Route::group(
                 Route::post('/upload/cover', [UserController::class, 'uploadCoverImage'])->name('upload-cover-image');
                 // uploadAvatar
                 Route::post('/upload/avatar', [UserController::class, 'uploadAvatar'])->name('upload-avatar-image');
+                // edit profile
+                Route::post('/update/profile', [UserController::class, 'updateProfile'])->name('update-profile');
             }
         );
         Route::group(

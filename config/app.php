@@ -181,6 +181,7 @@ return [
     App\Providers\RouteServiceProvider::class,
     App\Providers\MenuServiceProvider::class,
     Intervention\Image\ImageServiceProvider::class,
+    RealRashid\SweetAlert\SweetAlertServiceProvider::class,
 
   ],
 

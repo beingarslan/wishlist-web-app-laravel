@@ -165,7 +165,7 @@ class UserController extends Controller
     // upload cover image
     public function uploadCoverImage(Request $request)
     {
-      // dd($request->all());
+      // dd($request->image);
       // dd($request->file('cover_image'));
         $user = User::find(auth()->user()->id);
         if (!$user) {
@@ -176,15 +176,20 @@ class UserController extends Controller
         // $path = public_path().'img/designs/' . $png_url;
 
         // Image::make(file_get_contents($request->image))->save($path);
-        $user->cover_image = $request->file('image');
+        $user->cover_image = $request->image;
         $user->save();
+        // dd("hi");
         Alert::success('Success', 'Cover image has been updated successfully');
-        return redirect()->back();
+        // redirect to home page
+        // return redirect()->route('guest.wishlist.home');
+        // return response
+        // dd($user->cover_image);
+        return response()->json(['success' => 'Cover image has been updated successfully']);
     }
     // upload profile image
     public function uploadAvatar(Request $request)
     {
-      dd($request->all());
+      // dd($request->all());
       // dd($request->file('image'));
         $user = User::find(auth()->user()->id);
         if (!$user) {
@@ -200,5 +205,34 @@ class UserController extends Controller
     {
         $users = User::where('id', $id)->delete();
         return response()->json('Deleted');
+    }
+
+    // editProfile
+    public function updateProfile(Request $request)
+    {
+      // dd($request->all());
+        try {
+          $validatedData = $request->validate([
+            'name' => 'required',
+            'wishlist_name' => 'required',
+          ]);
+
+          if($validatedData){
+            $user = User::find(auth()->user()->id);
+            if (!$user) {
+                Alert::error('Error', 'User not found');
+                return redirect()->back();
+            }
+            $user->name = $request->name;
+            $user->wishlist_name = $request->wishlist_name;
+            $user->save();
+            Alert::success('Success', 'User has been updated successfully');
+            return redirect()->back();
+          }
+        } catch (\Throwable $th) {
+            // throw $th;
+            Alert::error('Error', 'Something went wrong');
+            return redirect()->back()->withInput();
+        }
     }
 }
