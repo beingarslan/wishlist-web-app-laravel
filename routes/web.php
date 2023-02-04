@@ -113,7 +113,6 @@ Route::group(
               ],
               function () {
                 Route::get('/', [GuestWishlistController::class, 'index'])->name('home');
-                Route::post('/add-category', [GuestWishlistController::class, 'addCategory'])->name('addCategory');
                 // Route::get('/index', [GuestWishlistController::class, 'index'])->name('index');
                 // Route::get('/list', [GuestWishlistController::class, 'list'])->name('list');
                 // Route::get('/create', [GuestWishlistController::class, 'create'])->name('create');
