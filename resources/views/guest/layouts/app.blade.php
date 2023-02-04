@@ -85,6 +85,10 @@
     <script src="{{ asset('front-end/js/cookie-consent-location.js') }}"></script>
     <script src="{{ asset('front-end/js/demo.js') }}"></script>
     <!-- endinject -->
+
+
+    @yield('scripts')
+
 </body>
 
 </html>

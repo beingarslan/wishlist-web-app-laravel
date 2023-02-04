@@ -83,7 +83,7 @@ class User extends Authenticatable
     public function getAvatarAttribute()
     {
         if ($this->attributes['avatar']) {
-            return Image::make(Storage::path($this->attributes['avatar']))->encode('data-url');
+            return Image::make(Storage::path($this->attributes['avatar']))->resize(200, 200)->encode('data-url');
         }
         return asset('images/portrait/small/avatar-s-10.jpg');
     }

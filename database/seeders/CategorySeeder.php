@@ -21,7 +21,7 @@ class CategorySeeder extends Seeder
       $users = User::all();
 
       $categories=[];
-      for ($i=0; $i < 10; $i++) {
+      for ($i=0; $i < 3; $i++) {
         $categories[] = [
           'name' => $faker->name,
           'user_id' => $users->random()->id,

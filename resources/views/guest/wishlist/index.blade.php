@@ -14,14 +14,9 @@
     <link rel="stylesheet" href="{{ asset('front-end/css/rtl.css') }}">
     <link rel="stylesheet" href="{{ asset('front-end/css/demo.css') }}">
     <link rel="stylesheet" href="{{ asset('front-end/css/wishlist_styles.css') }}">
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.6/cropper.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.6/cropper.js"></script>
     <meta name="csrf-token" content="{{ csrf_token() }}" />
 @endsection
 
@@ -112,9 +107,19 @@
         </div>
         <div class="d-flex my-5 container">
             <div class="col-md-5 text-end">
-                <p class="d-inline text-center align-items-center text-black">Write a message for you friends
-                    <i class="ms-2 fa fa-pencil-alt"></i>
-                </p>
+                <div class="message-div d-none">
+                    <input type="text" id="addMessage" name="message">
+                    <button type="button" id="addMessageBtn" class="btn btn-sm border-0"> <i
+                            class="fa fa-check text-black"></i>
+                    </button>
+                </div>
+                <div class="message-div-2">
+                    <p id="message" class="d-inline text-center align-items-center text-black">Write a message for you
+                        friends</p>
+                    <button type="button" id="editMessageBtn" class="btn btn-sm border-0"><i
+                            class="ms-2 fa fa-pencil-alt"></i></button>
+                </div>
+
             </div>
             <div class="ms-auto">
                 <button data-bs-toggle="modal" data-bs-target="#editModel"
@@ -179,13 +184,53 @@
     <section class="section section-wishes">
         <div class="container p-2 d-block d-md-flex">
             <p class="text-center">Wishes: 0/0</p>
-            <div class="ms-auto my-auto btns">
-                <button class="btn btn-rounded btn-outline-primary">CATEGORIES</button>
+            <div class="ms-auto my-auto btns dropdown">
+                <button class="btn btn-rounded btn-outline-primary" type="button" id="dropdownMenuButton"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">CATEGORIES</button>
+                <div class="dropdown-menu p-3" aria-labelledby="dropdownMenuButton">
+                    <div class="d-flex my-2 justify-content-between">
+                        <div>
+                            <input type="checkBox">
+                            <label for="all">All</label>
+                        </div>
+                        <button class="btn btn-sm" type="button" data-bs-toggle="modal"
+                            data-bs-target="#addCategoryModal"> <i class="fa fa-plus"></i> </button>
+                    </div>
+                    <div id="category-list">
+                        @foreach ($categories as $category)
+                            <div class="my-2">
+                                <input type="checkbox" value="{{ $category->id }}">
+                                <label for="category">{{ $category->name }}</label><br>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
                 <button class="btn btn-rounded btn-outline-primary"><i class="fa fa-list"></i></button>
                 <button type="button" class="btn btn-rounded btn-outline-primary" data-bs-toggle="modal"
                     data-bs-target="#addWishModel">
                     ADD A WISH
                 </button>
+            </div>
+            <div class="modal fade" id="addCategoryModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable rounded">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title text-center" id="exampleModalLabel">Add a category</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <label for="name">Category Name</label>
+                            <input id="category-name" type="text" class="form-control" name="name"
+                                placeholder="Enter the category name">
+                            <button id="add-category" type="submit" class="btn btn-primary mt-3">Add</button>
+
+                        </div>
+
+                    </div>
+                </div>
+
             </div>
             <div class="modal fade" id="addWishModel" tabindex="-1" aria-labelledby="exampleModalLabel"
                 aria-hidden="true">
@@ -221,15 +266,13 @@
                                 </div>
                                 <br>
                                 <div class="my-2">
-
-                                    @foreach ($categories as $cat)
-                                        <input class="form-check-input" type="checkbox" value="{{ $cat->id }}"
-                                            id="flexCheckDefault-{{ $cat->id }}" name='categories[]'>
-                                        <label class="form-check-label" for="flexCheckDefault">
-                                            {{ $cat->name }}
-                                        </label>
-                                    @endforeach
-
+                                    <label for="category" class="form-label">Select Category</label>
+                                    <select class="form-control category-tags" name="categories" multiple="multiple">
+                                        @foreach ($categories as $category)
+                                            <option class="custom-option" value="{{ $category->id }}">
+                                                {{ $category->name }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
 
                                 <div class="form-check mb3">
@@ -402,7 +445,7 @@
                                                                 @endif
                                                                 <label for="clickboth">Allow Repeat Purchases</label>
                                                                 <!-- <input type="checkbox">
-                                                                  Allow Repeat Purchases -->
+                                                                                                      Allow Repeat Purchases -->
                                                             </div>
                                                             <p class="small text-gary"><span class="mx-2"></span> Check
                                                                 if
@@ -437,95 +480,29 @@
                             <!-- <hr class="d-sm-none"> -->
                     </div>
                 @endforeach
-
-
-
-                {{-- <div class="col-lg-3 col-md-3 col-sm-6 col-12 p-2 shadow-hover">
-              <div class="card product-card border-0">
-                  <a class="btn btn-sm absolute top right" href="#">
-                      <i class="far fa-heart"></i> </a>
-                  <a class="card-img-top d-block overflow-hidden" href="#">
-                      <img src="{{ asset('front-end/img/gift_images/photo_2.avif')}}" class="w-100 card-img" height="300px" alt=""></a>
-        <div class="card-body">
-            <div class="justify-content-between flex-wrap">
-                <div class="product-price text-start">
-                    <span class="light text-capitalize">grani</span>
-                </div>
-            </div>
-        </div>
-        <div class="product-rating small text-alternate text-end">
-            <button class="rounded-circle-left rounded-circle-right btn btn-outline-success border-0 p-2 text-uppercase ms-auto">share <i class="fas fa-sad-tear ms-2"></i></button>
-        </div>
-    </div>
-    <hr class="d-sm-none">
-    </div> --}}
-                {{-- <div class="col-lg-3 col-md-3 col-sm-6 col-12 p-2 shadow-hover">
-              <div class="card product-card border-0">
-                  <a class="btn btn-sm absolute top right" href="#">
-                      <i class="far fa-heart"></i> </a>
-                  <a class="card-img-top d-block overflow-hidden" href="#">
-                      <img src="{{ asset('front-end/img/gift_images/valentine_3.webp')}}" class="w-100 card-img" height="300px" alt=""></a>
-    <div class="card-body">
-        <div class="justify-content-between flex-wrap">
-            <div class="product-price text-start">
-                <span class="light text-capitalize">grani</span>
-            </div>
-
-        </div>
-    </div>
-    <div class="product-rating small text-alternate text-end">
-        <button class="rounded-circle-left rounded-circle-right btn btn-outline-success border-0 p-2 text-uppercase ms-auto">share <i class="fas fa-sad-tear ms-2"></i></button>
-
-    </div>
-    </div>
-    <hr class="d-sm-none">
-    </div> --}}
-                {{-- <div class="col-lg-3 col-md-3 col-sm-6 col-12 p-2 shadow-hover">
-              <div class="card product-card border-0">
-                  <a class="btn btn-sm absolute top right" href="#">
-                      <i class="far fa-heart"></i> </a>
-                  <a class="card-img-top d-block overflow-hidden" href="#">
-                      <img src="{{ asset('front-end/img/gift_images/photo-4.jpeg')}}" class="w-100 card-img" height="300px" alt=""></a>
-    <div class="card-body">
-        <div class="justify-content-between flex-wrap">
-            <div class="product-price text-start">
-                <span class="light text-capitalize">grani</span>
-            </div>
-
-        </div>
-    </div>
-    <div class="product-rating small text-alternate text-end">
-        <button class="rounded-circle-left rounded-circle-right btn btn-outline-success border-0 p-2 text-uppercase ms-auto">share <i class="fas fa-sad-tear ms-2"></i></button>
-
-    </div>
-    </div>
-    <hr class="d-sm-none">
-    </div> --}}
-                {{-- <div class="col-lg-3 col-md-3 col-sm-6 col-12 p-2 shadow-hover">
-              <div class="card product-card border-0">
-                  <a class="btn btn-sm absolute top right" href="#">
-                      <i class="far fa-heart"></i> </a>
-                  <a class="card-img-top d-block overflow-hidden" href="#">
-                      <img src="{{ asset('front-end/img/gift_images/photo_5.jpeg')}}" class="w-100 card-img" height="300px" alt=""></a>
-    <div class="card-body">
-        <div class="justify-content-between flex-wrap">
-            <div class="product-price text-start">
-                <span class="light text-capitalize">grani</span>
-            </div>
-
-        </div>
-    </div>
-    <div class="product-rating small text-alternate text-end">
-        <button class="rounded-circle-left rounded-circle-right btn btn-outline-light text-success border-0 p-2 text-uppercase ms-auto">share <i class="fas fa-sad-tear ms-2"></i></button>
-
-    </div>
-    </div>
-    <hr class="d-sm-none">
-    </div> --}}
-
             </div>
         </div>
     </section>
+@endsection
+
+@section('scripts')
+
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.6/cropper.js"></script>
+
+    <script type="text/javascript">
+            $.noConflict();
+
+        // $.noConflict();
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+    </script>
 
     <script>
         function readURL(input) {
@@ -550,16 +527,64 @@
         }
     </script>
 
-    <!-- section wishes end -->
-    {{-- cropper js --}}
-    <script type="text/javascript">
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
+    <script>
+        $(function() {
+            // add a category
+            $('#add-category').click(function() {
+                var category = $('#category-name').val();
+                $.ajax({
+                    url: "/guest/wishlist/add-category",
+                    method: 'POST',
+                    data: {
+                        "_token": "{{ csrf_token() }}",
+                        name: category
+
+                    },
+                    success: function(data) {
+                        // hide the modal
+                        $('#addCategoryModal').modal('hide');
+                        // add the category to the div
+                        $('#category-list').append(
+                            '<div class="my-2">' +
+                            '<input type="checkbox" value="' + data.category.id + '">' +
+                            '<label>' + data.category.name + '</label>' +
+                            '</div>'
+                        );
+                    }
+                });
+            });
         });
     </script>
     <script>
+        // on click message button
+        $('#editMessageBtn').on('click', function() {
+            $('.message-div').addClass('d-none');
+            $('.message-div-2').removeClass('d-none');
+            $('#message').val($('#message').text());
+        });
+        // select2 for category tags
+        $('.category-tags').select2({
+            tags: true,
+            placeholder: 'Select categories',
+            // ajax: {
+            //     url: '/guest/wishlist/add-category',
+            //     dataType: 'json',
+            //     delay: 250,
+            //     data: function(params) {
+            //         return {
+            //             term: params.term
+            //         };
+            //     },
+            //     processResults: function(data) {
+            //         return {
+            //             results: data
+            //         };
+            //     },
+            //     cache: true
+            // }
+        });
+
+
         var $routeUpload;
         var $routeUpdate;
         var $imageId
@@ -573,14 +598,14 @@
             $routeUpdate = "/user/get/avatar";
             $imageId = "avatar-image";
         });
-        var $modal = $('#modal');
+        var modal = $('#modal');
         var image = document.getElementById('image');
         var cropper;
         $("body").on("change", ".image", function(e) {
             var files = e.target.files;
             var done = function(url) {
                 image.src = url;
-                $modal.modal('show');
+                modal.modal('show');
             };
             var reader;
             var file;
@@ -598,7 +623,7 @@
                 }
             }
         });
-        $modal.on('shown.bs.modal', function() {
+        modal.on('shown.bs.modal', function() {
             cropper = new Cropper(image, {
                 aspectRatio: 600 / 300,
                 viewMode: 3,
@@ -628,7 +653,7 @@
                             'image': base64data
                         },
                         success: function(data) {
-                            $modal.modal('hide');
+                            modal.modal('hide');
                             // ajax call to get the updated image
                             $.ajax({
                                 type: "GET",

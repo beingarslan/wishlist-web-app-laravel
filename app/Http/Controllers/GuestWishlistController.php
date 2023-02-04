@@ -18,10 +18,21 @@ class GuestWishlistController extends Controller
         abort(403);
     }
     $categories = Category::get();
-    // $wishlist = $user->wishlist;
-    // dd($wishlist);
 
     return view('guest.wishlist.index', compact('categories', 'user'));
+  }
+
+  public function addCategory(Request $request)
+  {
+    $user = Auth::user();
+    if (!$user) {
+        abort(403);
+    }
+    dd( $request->all());
+    $category = new Category;
+    $category->name = $request->name;
+    $category->save();
+    return response()->json(['success' => 'Category added successfully.', 'category' => $category]);
   }
 
   public function store(Request $request)
