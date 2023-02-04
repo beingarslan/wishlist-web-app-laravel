@@ -30,7 +30,7 @@
     <header class="header section mt-5 header section text-contrast  overlay-primary  parallax cover">
         <div class="cover-img relative ">
             <div class="main-img">
-                @if (!$user->cover_image)
+                @if (isset($user->cover_image))
                     <img src="{{ asset('front-end/img/header.jpg') }}" class="img-fluid cover-image"
                         style="background-repeat: no-repeat; background-position: center; " id="cover_image" alt="">
                 @else
@@ -79,15 +79,12 @@
                     </div>
                 </div>
             </div>
-
-
-
         </div>
         <div class="profile-img relative">
             <div class="row mt-n8  justify-content-center ">
                 <div class="col-md-2 order-1">
                     <div class="">
-                        @if (!$user->avatar)
+                        @if (isset($user->avatar))
                             <img class="img img-fluid img-thumbnail rounded-pill" width="218px" height="218px"
                                 src="{{ asset('front-end/img/avatar/5.jpg') }}" id="avatar-image" alt="">
                         @else
@@ -95,11 +92,12 @@
                                 src="{{ $user->avatar }}" id="avatar-image" alt="$user->avatar">
                         @endif
                         <div class="position-relative mt-n6 ms-10">
-                            
+
                             <div style='height: 0px;width: 0px; overflow:hidden;'>
                                 <input type="file" accept="image/*" id="fileInput" name="avatar" class="image" />
                             </div>
-                            <button id="avatarBtn" class="fs-6 m-0 btn btn-primary btn-circle" onclick="fileInput.click();">
+                            <button id="avatarBtn" class="fs-6 m-0 btn btn-primary btn-circle"
+                                onclick="fileInput.click();">
                                 <i class='fa fa-camera'></i>
                             </button>
                         </div>
@@ -404,7 +402,7 @@
                                                                 @endif
                                                                 <label for="clickboth">Allow Repeat Purchases</label>
                                                                 <!-- <input type="checkbox">
-                                                              Allow Repeat Purchases -->
+                                                                  Allow Repeat Purchases -->
                                                             </div>
                                                             <p class="small text-gary"><span class="mx-2"></span> Check
                                                                 if
@@ -639,7 +637,7 @@
                                     var imageTag = document.getElementById(
                                         $imageId);
                                     imageTag.src = data.image.encoded;
-                                        console.log(data.image.encoded);
+                                    console.log(data.image.encoded);
                                 }
                             });
                         }
