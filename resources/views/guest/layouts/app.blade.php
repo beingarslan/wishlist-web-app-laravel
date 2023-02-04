@@ -2,6 +2,7 @@
 <html lang="en">
 
 @include('sweetalert::alert')
+
 <head>
     <meta charset="utf-8">
     <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge" /><![endif]-->
@@ -11,7 +12,7 @@
     <link rel="icon" href="favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,300,400,500,700,900" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Caveat" rel="stylesheet">
-    <title>DashCore - Premium Software & Startup HTML</title><!-- themeforest:css -->
+    <title>Wishlist</title><!-- themeforest:css -->
     <link rel="stylesheet" href="{{ asset('front-end/css/fontawesome.css') }}">
     <link rel="stylesheet" href="{{ asset('front-end/css/aos.css') }}">
     <link rel="stylesheet" href="{{ asset('front-end/css/bootstrap.css') }}">
@@ -25,8 +26,13 @@
     <link rel="stylesheet" href="{{ asset('front-end/css/dashcore.css') }}">
     <link rel="stylesheet" href="{{ asset('front-end/css/rtl.css') }}">
     <link rel="stylesheet" href="{{ asset('front-end/css/demo.css') }}">
+    <link rel="stylesheet" href="{{ asset('front-end/css/cropper.min.css') }}">
+
+
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     @yield('page-styles')
     <!-- endinject -->
+    @livewireStyles
 </head>
 
 <body>
@@ -67,7 +73,7 @@
     <script src="{{ asset('front-end/js/cookieconsent.js') }}"></script>
     <script src="{{ asset('front-end/js/jquery.animatebar.js') }}"></script>
     <script src="{{ asset('front-end/js/common.js') }}"></script>
-    <script src="{{ asset('front-end/js/form.js') }}"></script>
+    <script src="{{ asset('front-end/js/forms.js') }}"></script>
     <script src="{{ asset('front-end/js/stripe-bubbles.js') }}"></script>
     <script src="{{ asset('front-end/js/stripe-menu.js') }}"></script>
     <script src="{{ asset('front-end/js/credit-card.js') }}"></script>
@@ -84,7 +90,12 @@
     <script src="{{ asset('front-end/js/cookie-consent-opt-in.js') }}"></script>
     <script src="{{ asset('front-end/js/cookie-consent-location.js') }}"></script>
     <script src="{{ asset('front-end/js/demo.js') }}"></script>
+    <script src="{{ asset('front-end/js/cropper.min.js') }}"></script>
     <!-- endinject -->
+    @yeild('page-scripts')
+    @livewireScripts
+
+    @stack('lw-scripts')
 </body>
 
 </html>
