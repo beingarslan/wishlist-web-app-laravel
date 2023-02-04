@@ -53,6 +53,8 @@ Route::group(
                 Route::post('/update', [UserController::class, 'update'])->name('update');
                 Route::delete('/delete/{id}', [UserController::class, 'destroy'])->name('destroy');
                 Route::get('/{id}', [UserController::class, 'show'])->name('show');
+                Route::get('/get/cover', [UserController::class, 'getCoverImage'])->name('getCoverImage');
+                Route::get('/get/avatar', [UserController::class, 'getAvatar'])->name('getAvatar');
                 // upload image
                 Route::post('/upload/cover', [UserController::class, 'uploadCoverImage'])->name('upload-cover-image');
                 // uploadAvatar

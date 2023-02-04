@@ -165,41 +165,28 @@ class UserController extends Controller
     // upload cover image
     public function uploadCoverImage(Request $request)
     {
-      // dd($request->image);
-      // dd($request->file('cover_image'));
         $user = User::find(auth()->user()->id);
         if (!$user) {
             Alert::error('Error', 'User not found');
             return redirect()->back();
         }
-        // $png_url = "Image-".time().".png";
-        // $path = public_path().'img/designs/' . $png_url;
-
-        // Image::make(file_get_contents($request->image))->save($path);
         $user->cover_image = $request->image;
         $user->save();
-        // dd("hi");
         Alert::success('Success', 'Cover image has been updated successfully');
-        // redirect to home page
-        // return redirect()->route('guest.wishlist.home');
-        // return response
-        // dd($user->cover_image);
-        return response()->json(['success' => 'Cover image has been updated successfully']);
+        return response()->json(['success' => 'Cover image has been updated successfully', 'image' => $user->cover_image]);
     }
     // upload profile image
     public function uploadAvatar(Request $request)
     {
-      // dd($request->all());
-      // dd($request->file('image'));
         $user = User::find(auth()->user()->id);
         if (!$user) {
             Alert::error('Error', 'User not found');
             return redirect()->back();
         }
-        $user->avatar = $request->file('image');
+        $user->avatar = $request->image;
         $user->save();
         Alert::success('Success', 'Profile image has been updated successfully');
-        return redirect()->back();
+        return response()->json(['success' => 'Profile image has been updated successfully', 'image' => $user->avatar]);
     }
     public function destroy($id)
     {
@@ -207,10 +194,30 @@ class UserController extends Controller
         return response()->json('Deleted');
     }
 
+    // get avatar
+    public function getAvatar()
+    {
+        $user = User::find(auth()->user()->id);
+        if (!$user) {
+            Alert::error('Error', 'User not found');
+            return redirect()->back();
+        }
+        return response()->json(['success' => 'Profile image has been updated successfully', 'image' => $user->avatar]);
+    }
+
+    // get cover
+    public function getCoverImage()
+    {
+        $user = User::find(auth()->user()->id);
+        if (!$user) {
+            Alert::error('Error', 'User not found');
+            return redirect()->back();
+        }
+        return response()->json(['success' => 'Cover image has been updated successfully', 'image' => $user->cover_image]);
+    }
     // editProfile
     public function updateProfile(Request $request)
     {
-      // dd($request->all());
         try {
           $validatedData = $request->validate([
             'name' => 'required',

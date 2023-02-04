@@ -11,7 +11,6 @@ class ImageUploadHelper
 {
     public static function uploadImage($directory, $image, $oldImage = null, $ratio)
     {
-
         $imageName = Str::random(10) . time() . '.' . $image->getClientOriginalExtension();
         $img = Image::make($image->getRealPath())->resize($ratio[0], $ratio[1]);
         $img->save(public_path($directory . '/' . $imageName));
