@@ -28,6 +28,7 @@
     <link rel="stylesheet" href="{{ asset('front-end/css/demo.css') }}">
     <link rel="stylesheet" href="{{ asset('front-end/css/cropper.min.css') }}">
 
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
 
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     @yield('page-styles')
@@ -53,7 +54,7 @@
     </main>
 
 
-    <script src="{{ asset('front-end/js/jquery.js') }}"></script>
+    {{-- <script src="{{ asset('front-end/js/jquery.js') }}"></script> --}}
     <script src="{{ asset('front-end/js/bootstrap.bundle.js') }}"></script>
     <script src="{{ asset('front-end/js/card.js') }}"></script>
     <script src="{{ asset('front-end/js/counterup2.js') }}"></script>
