@@ -78,7 +78,7 @@
                 </div>
             </div>
         </div>
-        <div class="d-flex my-5 container">
+        <div class="d-flex my-4 container">
             <div class="col-md-5 text-end">
                 <div class="message-form d-none">
 
