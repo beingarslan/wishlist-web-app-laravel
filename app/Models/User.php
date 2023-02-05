@@ -28,6 +28,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'description',
         'email',
         'password',
         'avatar',
@@ -77,37 +78,16 @@ class User extends Authenticatable
         if ($this->attributes['cover_image']) {
             return Image::make(Storage::path($this->attributes['cover_image']))->encode('data-url');
         }
-        return asset('images/portrait/small/avatar-s-10.jpg');
+        return asset('assets/img/backgrounds/1.jpg');
     }
 
     public function getAvatarAttribute()
     {
         if ($this->attributes['avatar']) {
-            return Image::make(Storage::path($this->attributes['avatar']))->encode('data-url');
+            return Image::make(Storage::path($this->attributes['avatar']))->resize(200,200)->encode('data-url');
         }
-        return asset('images/portrait/small/avatar-s-10.jpg');
+        return asset('assets/img/avatars/1.png');
     }
-
-    public function getAvatarPathAttribute()
-    {
-        // avatar_path
-        if ($this->attributes['avatar']) {
-            return Storage::path($this->attributes['avatar']);
-        }
-        return asset('images/portrait/small/avatar-s-10.jpg');
-    }
-
-    // get cover image path attribute
-    public function getCoverImagePathAttribute()
-    {
-        // cover_image_path
-        if ($this->attributes['cover_image']) {
-            return Storage::path($this->attributes['cover_image']);
-        }
-        return asset('images/portrait/small/avatar-s-10.jpg');
-    }
-
-
 
     public function wishlist()
     {

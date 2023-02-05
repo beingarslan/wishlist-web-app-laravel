@@ -55,6 +55,7 @@ Route::group(
                 Route::get('/{id}', [UserController::class, 'show'])->name('show');
                 Route::get('/get/cover', [UserController::class, 'getCoverImage'])->name('getCoverImage');
                 Route::get('/get/avatar', [UserController::class, 'getAvatar'])->name('getAvatar');
+                Route::post('update/message', [UserController::class, 'updateMessage'])->name('update-message');
                 // upload image
                 Route::post('/upload/cover', [UserController::class, 'uploadCoverImage'])->name('upload-cover-image');
                 // uploadAvatar

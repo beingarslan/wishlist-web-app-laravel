@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Toastr;
 use App\Models\Category;
 use App\Models\Wishlist;
 use Illuminate\Http\Request;
 use App\Models\CategoryWishlist;
 use Illuminate\Support\Facades\Auth;
 use Validator;
+
 class GuestWishlistController extends Controller
 {
 
@@ -15,67 +17,73 @@ class GuestWishlistController extends Controller
   {
     $user = Auth::user();
     if (!$user) {
-        abort(403);
+      abort(403);
     }
     $categories = Category::get();
-    // $wishlist = $user->wishlist;
-    // dd($wishlist);
-
     return view('guest.wishlist.index', compact('categories', 'user'));
   }
 
   public function store(Request $request)
   {
+    // dd($request->all());
     $user = Auth::user();
     if (!$user) {
-        abort(403);
+      abort(403);
     }
-    $validated = $request->validate([
-      'name' => 'required|max:200',
-      'url' => 'sometimes',
-      'categories' => 'required|array',
-      'price' => 'required',
-      'image' => 'image|mimes:jpeg,png,jpg,svg',
-      'repeat' => 'sometimes'
-    ]);
-    $wish =  Wishlist::create([
-      'name' => $request->input('name'),
-      'url' => $request->input('url'),
-      'image' => $request->file('image'),
-      'price' => $request->input('price'),
-      'repeat_purchase' => $request->input('repeat_purchase')?$request->input('repeat_purchase'):0,
-  ]);
-  $user->wishlist()->save($wish);
-    foreach ($request->categories as $category) {
-      $product =  CategoryWishlist::create([
-          'category_id' => $category,
-          'wishlist_id' => $wish->id
-      ]);
-  }
+    try {
+      $wishlist = new Wishlist();
+      $wishlist->name = $request->name;
+      $wishlist->price = $request->price;
+      $wishlist->repeat_purchase = $request->repeat_purchase ? $request->repeat_purchase : 0;
+      $wishlist->url = $request->url;
+      $wishlist->user_id = $user->id;
+      if ($request->hasFile('image')) {
+        $wishlist->image = $request->file('image');
+      }
+      $wishlist->save();
+      foreach ($request->categories as $category) {
+        CategoryWishlist::create([
+          'wishlist_id' => $wishlist->id,
+          'category_id' => $category
+        ]);
+      }
+      Toastr::success('Wishlist added successfully', 'Success');
       return redirect()->back();
+    } catch (\Exception $e) {
+      Toastr::error('Something went wrong', 'Error');
+      return redirect()->back();
+    }
   }
 
   public function update(Request $request)
   {
-    $wish = Wishlist::where('id', $request->input('id'))->first();
-    if($request->hasFile('image')){
-        $wish->image = $request->file('image');
+    $user = Auth::user();
+    if (!$user) {
+      abort(403);
     }
-    $wish->name = $request->input('name');
-    $wish->price = $request->input('price');
-    $wish->repeat_purchase = $request->input('repeat_purchase')?$request->input('repeat_purchase'):0;
-    $wish->save();
-  return redirect()->back();
+    try {
+      $wishlist = Wishlist::find($request->id);
+      $wishlist->name = $request->name;
+      $wishlist->price = $request->price;
+      $wishlist->repeat_purchase = $request->repeat_purchase ? $request->repeat_purchase : 0;
+      $wishlist->url = $request->url;
+      $wishlist->user_id = $user->id;
+      if ($request->hasFile('image')) {
+        $wishlist->image = $request->file('image');
+      }
+      $wishlist->save();
 
+      Toastr::success('Wishlist updated successfully', 'Success');
+      return redirect()->back();
+    } catch (\Exception $e) {
+      Toastr::error('Something went wrong', 'Error');
+      return redirect()->back();
+    }
   }
 
   public function destroy(Request $request)
   {
     $wishlist = Wishlist::where('id', $request->id)->delete();
     return redirect()->back();
-    dd($request->id);
   }
-
-
-
 }

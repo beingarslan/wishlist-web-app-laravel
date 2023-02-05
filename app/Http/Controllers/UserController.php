@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Toastr;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
@@ -11,7 +12,7 @@ use Intervention\Image\Facades\Image;
 
 class UserController extends Controller
 {
-    public function list (Request $request)
+    public function list(Request $request)
     {
         try {
             $totalData = User::count();
@@ -117,11 +118,11 @@ class UserController extends Controller
             $user->name = $request->name;
             $user->email = $request->email;
             $user->save();
-            Alert::success('Success', 'User has been created successfully');
+            Toastr::success('Success', 'User has been created successfully');
             return redirect()->back();
         } catch (\Throwable $th) {
             // throw $th;
-            Alert::error('Error', 'Something went wrong');
+            Toastr::error('Error', 'Something went wrong');
             return redirect()->back()->withInput();
         }
     }
@@ -142,7 +143,7 @@ class UserController extends Controller
         return view('user.edit', ['user' => $user]);
     }
 
-    public function update (Request $request)
+    public function update(Request $request)
     {
         try {
             $user = User::find($request->id);
@@ -153,11 +154,11 @@ class UserController extends Controller
             $user->name = $request->name;
             $user->email = $request->email;
             $user->save();
-            Alert::success('Success', 'User has been updated successfully');
+            Toastr::success('Success', 'User has been updated successfully');
             return redirect()->route('user.home');
         } catch (\Throwable $th) {
             // throw $th;
-            Alert::error('Error', 'Something went wrong');
+            Toastr::error('Error', 'Something went wrong');
             return redirect()->back()->withInput();
         }
     }
@@ -172,7 +173,7 @@ class UserController extends Controller
         }
         $user->cover_image = $request->image;
         $user->save();
-        Alert::success('Success', 'Cover image has been updated successfully');
+        // Alert::success('Success', 'Cover image has been updated successfully');
         return response()->json(['success' => 'Cover image has been updated successfully', 'image' => $user->cover_image]);
     }
     // upload profile image
@@ -185,7 +186,7 @@ class UserController extends Controller
         }
         $user->avatar = $request->image;
         $user->save();
-        Alert::success('Success', 'Profile image has been updated successfully');
+        // Alert::success('Success', 'Profile image has been updated successfully');
         return response()->json(['success' => 'Profile image has been updated successfully', 'image' => $user->avatar]);
     }
     public function destroy($id)
@@ -219,26 +220,38 @@ class UserController extends Controller
     public function updateProfile(Request $request)
     {
         try {
-          $validatedData = $request->validate([
-            'name' => 'required',
-            'wishlist_name' => 'required',
-          ]);
-
-          if($validatedData){
             $user = User::find(auth()->user()->id);
             if (!$user) {
-                Alert::error('Error', 'User not found');
+                Toastr::error('Error', 'User not found');
                 return redirect()->back();
             }
             $user->name = $request->name;
             $user->wishlist_name = $request->wishlist_name;
             $user->save();
-            Alert::success('Success', 'User has been updated successfully');
+            Toastr::success('Success', 'User has been updated successfully');
             return redirect()->back();
-          }
         } catch (\Throwable $th) {
             // throw $th;
-            Alert::error('Error', 'Something went wrong');
+            Toastr::error('Error', 'Something went wrong');
+            return redirect()->back()->withInput();
+        }
+    }
+
+    public function updateMessage (Request $request)
+    {
+        try {
+            $user = User::find(auth()->user()->id);
+            if (!$user) {
+                Toastr::error('Error', 'User not found');
+                return redirect()->back();
+            }
+            $user->description = $request->message;
+            $user->save();
+            // Toastr::success('Success', 'Message has been updated successfully');
+            return response()->json(['message' => $user->description]);
+        } catch (\Throwable $th) {
+            // throw $th;
+            Toastr::error('Error', 'Something went wrong');
             return redirect()->back()->withInput();
         }
     }

@@ -24,7 +24,7 @@ class WishlistSeeder extends Seeder
       $categories = Category::all();
 
       $wishlists = [];
-      for ($i = 0; $i < rand(100, 120); $i++) {
+      for ($i = 0; $i < 10; $i++) {
           // randon user id and group id
           $user_id = $users->random()->id;
           $wishlists[] =
@@ -34,7 +34,6 @@ class WishlistSeeder extends Seeder
                   'name' => $faker->sentence,
                   'url' => $faker->url,
                   'price' => $faker->randomFloat(2, 1, 1000),
-                  'image' => $faker->imageUrl(640, 480, 'cats', true, 'Faker'),
                   'repeat_purchase' => $faker->boolean,
                   'created_at' => $faker->dateTimeBetween('-1 years', 'now'),
                   'updated_at' => $faker->dateTimeBetween('-1 years', 'now'),
