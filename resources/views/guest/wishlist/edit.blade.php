@@ -1,5 +1,5 @@
 <div>
-    <div class="modal fade" id="aboutcard-{{ $wish->id }}" tabindex="-1" aria-labelledby="aboutcard" aria-hidden="true">
+    <div class="modal fade addWishModelC" id="aboutcard-{{ $wish->id }}" tabindex="-1" aria-labelledby="aboutcard" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
@@ -9,11 +9,10 @@
                         aria-label="Close"></button>
                 </div>
                 <div>
-                    <form id="edit-wish-form" action="{{ route('guest.wishlist.update') }}" method="POST"
-                        enctype="multipart/form-data"
-                        class="">
+                    <form id="edit-wish-form" action="{{ route('wishlist.update') }}" method="POST"
+                        enctype="multipart/form-data" class="">
                         @csrf
-                        <input type="hidden" name="id" value="{{ $wish->id }}" />
+                        <input type="hidden" class="wishId" name="id" value="{{ $wish->id }}" />
                         <div>
                             <div class="container py-2">
                                 <label for="basic-icon-default-email">Image</label>
@@ -68,7 +67,8 @@
                             <div class="form-group container my-2 text-start">
                                 <label for="category">Select Category</label>
                                 <br>
-                                <select class="category-tags" name="categories[]" multiple="multiple">
+                                <select class="category-tag" style="width: 100%" name="categories[]"
+                                    multiple="multiple">
                                     @foreach ($categories as $category)
                                         <option value="{{ $category->id }}">
                                             {{ $category->name }}</option>
@@ -76,35 +76,34 @@
                                 </select>
 
                             </div>
-                            <div>
-                                <div class="container py-2 text-start">
-                                    <div class="text-black mx-2"
-                                        style="font-family: Nunito, Roboto, 'Helvetica Neue', Arial, sans-serif;">
-                                        @if ($wish->repeat)
-                                            <input type="checkbox" id="clickboth" name="repeat" value='1' checked>
-                                        @else
-                                            <input type="checkbox" id="clickboth" name="repeat" value='0'>
-                                        @endif
-                                        <label for="clickboth">Allow Repeat Purchases</label>
-                                        <!-- <input type="checkbox">
+                            <div class="container py-2 text-start">
+                                <div class="text-black mx-2"
+                                    style="font-family: Nunito, Roboto, 'Helvetica Neue', Arial, sans-serif;">
+                                    @if ($wish->repeat)
+                                        <input type="checkbox" id="clickboth" name="repeat" value='1' checked>
+                                    @else
+                                        <input type="checkbox" id="clickboth" name="repeat" value='0'>
+                                    @endif
+                                    <label for="clickboth">Allow Repeat Purchases</label>
+                                    <!-- <input type="checkbox">
                                                               Allow Repeat Purchases -->
-                                    </div>
-                                    <p class="small text-gary"><span class="mx-2"></span> Check
-                                        if
-                                        you want repeat purchases of this gift. If
-                                        unchecked, the item will automatically delete from your
-                                        wishlist after the first purchase.</p>
                                 </div>
+                                <p class="small text-gary"><span class="mx-2"></span> Check
+                                    if
+                                    you want repeat purchases of this gift. If
+                                    unchecked, the item will automatically delete from your
+                                    wishlist after the first purchase.</p>
+                            </div>
 
-                                <div class="text-end py-3 container">
-                                    <button type="submit" value='submit'
-                                        class="btn btn-info btn-lg ms-auto border-0 text-uppercase form-control">Update</button>
-                                </div>
+                            <div class="text-end py-3 container">
+                                <button type="submit" value='submit'
+                                    class="btn btn-info btn-lg ms-auto border-0 text-uppercase form-control">Update</button>
                             </div>
                         </div>
+
                     </form>
                     <div class="text-end">
-                        <form action="{{ route('guest.wishlist.destroy') }}" method="post">
+                        <form action="{{ route('wish.destroy') }}" method="post">
                             @csrf
                             <input name="id" type="hidden" value="{{ $wish->id }}">
                             <button type="submit" class="btn btn-outline-info ms-auto border-0 text-uppercase"

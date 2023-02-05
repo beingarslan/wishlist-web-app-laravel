@@ -2,7 +2,7 @@
 
 @section('page-styles')
     <link rel="stylesheet" href="{{ asset('front-end/css/wishlist_styles.css') }}">
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ asset('front-end/css/select2.min.css') }}">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
 @endsection
 
@@ -195,10 +195,8 @@
 @endsection
 
 @section('page-scripts')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"
-        integrity="sha512-6lplKUSl86rUVprDIjiW8DuOniNX8UDoRATqZSds/7t6zCQZfaCe3e5zcGaQwxa8Kpn5RTM9Fvl3X2lLV4grPQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="{{ asset('front-end/js/cropper.min.js') }}"></script>
+    <script src="{{ asset('front-end/js/select2.min.js') }}"></script>
     <script type="text/javascript">
         $.ajaxSetup({
             headers: {
@@ -231,12 +229,6 @@
                         $('.messageValue').html(data.message);
                 }
             });
-        });
-
-        $(".category-tags").select2({
-            tags: true,
-            placeholder: "Select or add a category",
-            dropdownParent: $('#addWishModel')
         });
         var $routeUpload;
         var $routeUpdate;
@@ -322,6 +314,21 @@
                         }
                     });
                 }
+            });
+        });
+        $(".category-tags").select2({
+            tags: true,
+            dropdownParent: $('#addWishModel'),
+
+        });
+        // var wishes = '{{ count($user->wishlist) }}';
+        // console.log($('.wishId'));
+        $('.wishId').each(function() {
+            var id = $(this).val();
+            console.log(id);
+            $(".category-tag").select2({
+                tags: true,
+                dropdownParent: $('#aboutcard-' + id),
             });
         });
     </script>

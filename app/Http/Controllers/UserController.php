@@ -137,7 +137,7 @@ class UserController extends Controller
     {
         $user = User::find($id);
         if (!$user) {
-            Alert::error('Error', 'User not found');
+            Toastr::error('Error', 'User not found');
             return redirect()->back();
         }
         return view('user.edit', ['user' => $user]);
@@ -148,7 +148,7 @@ class UserController extends Controller
         try {
             $user = User::find($request->id);
             if (!$user) {
-                Alert::error('Error', 'User not found');
+                Toastr::error('Error', 'User not found');
                 return redirect()->back();
             }
             $user->name = $request->name;
@@ -168,26 +168,26 @@ class UserController extends Controller
     {
         $user = User::find(auth()->user()->id);
         if (!$user) {
-            Alert::error('Error', 'User not found');
+            Toastr::error('Error', 'User not found');
             return redirect()->back();
         }
         $user->cover_image = $request->image;
         $user->save();
-        // Alert::success('Success', 'Cover image has been updated successfully');
-        return response()->json(['success' => 'Cover image has been updated successfully', 'image' => $user->cover_image]);
+        // Toastr::success('Success', 'Cover image has been updated successfully');
+        return response()->json(['image' => $user->cover_image]);
     }
     // upload profile image
     public function uploadAvatar(Request $request)
     {
         $user = User::find(auth()->user()->id);
         if (!$user) {
-            Alert::error('Error', 'User not found');
+            Toastr::error('Error', 'User not found');
             return redirect()->back();
         }
         $user->avatar = $request->image;
         $user->save();
-        // Alert::success('Success', 'Profile image has been updated successfully');
-        return response()->json(['success' => 'Profile image has been updated successfully', 'image' => $user->avatar]);
+        // Toastr::success('Success', 'Profile image has been updated successfully');
+        return response()->json(['image' => $user->avatar]);
     }
     public function destroy($id)
     {
@@ -200,7 +200,7 @@ class UserController extends Controller
     {
         $user = User::find(auth()->user()->id);
         if (!$user) {
-            Alert::error('Error', 'User not found');
+            Toastr::error('Error', 'User not found');
             return redirect()->back();
         }
         return response()->json(['success' => 'Profile image has been updated successfully', 'image' => $user->avatar]);
@@ -211,7 +211,7 @@ class UserController extends Controller
     {
         $user = User::find(auth()->user()->id);
         if (!$user) {
-            Alert::error('Error', 'User not found');
+            Toastr::error('Error', 'User not found');
             return redirect()->back();
         }
         return response()->json(['success' => 'Cover image has been updated successfully', 'image' => $user->cover_image]);

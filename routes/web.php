@@ -25,11 +25,6 @@ use App\Http\Controllers\laravel_example\UserManagement;
 // front-end routes
 Route::get('/', [GuestController::class, 'index']);
 Route::get('/faq', [GuestController::class, 'faq'])->name('faq');
-Route::get('/profile', [GuestWishlistController::class, 'index'])->name('home');
-Route::post('store', [GuestWishlistController::class, 'store'])->name('store');
-Route::post('/wishlist/update', [GuestWishlistController::class, 'update'])->name('update');
-Route::post('/delete', [GuestWishlistController::class, 'destroy'])->name('destroy');
-
 
 Auth::routes();
 
@@ -38,6 +33,20 @@ Route::group(
         'middleware' => 'auth',
     ],
     function () {
+        // profile
+        Route::get('/profile', [GuestWishlistController::class, 'index'])->name('home');
+
+        // wish part from profile
+        Route::group([
+            'prefix' => 'wish',
+            'as' => 'wish.',
+        ],
+        function() {
+            Route::post('/store', [GuestWishlistController::class, 'store'])->name('store');
+            Route::post('/update', [GuestWishlistController::class, 'update'])->name('update');
+            Route::post('/delete', [GuestWishlistController::class, 'destroy'])->name('destroy');
+
+        });
         // dashboard
         Route::get('/home', [DashboardController::class, 'index'])->name('dashboard');
         // user crud
