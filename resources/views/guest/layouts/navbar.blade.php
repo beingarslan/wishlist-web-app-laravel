@@ -1,4 +1,7 @@
 <!-- Navbar -->
+@php
+ $userName = urldecode(Auth::user()->name);   
+@endphp
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
     <div class="container-fluid">
         <a class="navbar-brand ms-2 ms-md-4" href="{{url('/')}}">LOGO</a>
@@ -24,7 +27,8 @@
                     </a>
                 </li>
                 <li class="nav-item px-0 px-md-2">
-                    <a class="nav-link" href="/{{ auth()->user()->name }}">
+                    {{-- {{ dd(auth()->user()->name) }} --}}
+                    <a class="nav-link" href="/profile">
                         <img src="{{ asset('front-end/img/nav-icons/3.png')}}" alt="">
                     </a>
                 </li>
