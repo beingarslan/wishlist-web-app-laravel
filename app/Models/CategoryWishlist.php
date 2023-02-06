@@ -10,14 +10,17 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class CategoryWishlist extends Model
 {
     use HasFactory;
-        protected $fillable = [
-        'id',
+    
+    protected $fillable = [
+        'user_id',
         'wishlist_id',
         'category_id',
-        'created_at',
-        'update_at'
+        'name',
     ];
 
+    public function user(){
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
 
     public function wishlist(){
         return $this->belongsTo(Wishlist::class, 'wishlist_id', 'id');

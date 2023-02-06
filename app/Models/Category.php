@@ -9,9 +9,19 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Category extends Model
 {
     use HasFactory;
-    protected $fillable = ['name'];
-    public function wishlist()
+
+    protected $fillable = [
+        'name',
+        'user_id',
+    ];
+
+    public function user()
     {
-        return $this->belongsToMany(wishlist::class);
+        return $this->belongsTo(User::class);
+    }
+
+    public function categoryWishlists()
+    {
+        return $this->hasMany(CategoryWishlist::class);
     }
 }

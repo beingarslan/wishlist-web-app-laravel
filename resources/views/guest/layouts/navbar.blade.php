@@ -14,7 +14,7 @@
                     </a>
                 </li>
                 <li class="nav-item px-0 px-md-2">
-                    <a class="nav-link" href="{{url('/profile')}}">
+                    <a class="nav-link" href="#">
                         <img src="{{ asset('front-end/img/nav-icons/1.png')}}" alt="">
                     </a>
                 </li>
@@ -24,7 +24,7 @@
                     </a>
                 </li>
                 <li class="nav-item px-0 px-md-2">
-                    <a class="nav-link" href="wishlist.html">
+                    <a class="nav-link" href="/{{ auth()->user()->name }}">
                         <img src="{{ asset('front-end/img/nav-icons/3.png')}}" alt="">
                     </a>
                 </li>

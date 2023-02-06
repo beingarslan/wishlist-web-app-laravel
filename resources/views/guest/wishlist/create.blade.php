@@ -28,7 +28,7 @@
                             <br>
                             <select id="categories" class="category-tags form-select" style="width: 100%" name="categories[]" multiple="multiple">
                                 @foreach ($categories as $category)
-                                    <option value="{{ $category->id }}">
+                                    <option value="{{ $category->name }}">
                                         {{ $category->name }}</option>
                                 @endforeach
                             </select>

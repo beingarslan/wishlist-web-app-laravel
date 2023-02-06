@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Toastr;
 use App\Models\Wishlist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -47,7 +48,7 @@ class WishlistController extends Controller
                     $nestedData['user'] = $row->user_id;
                     $nestedData['image'] = $row->image;
                     $nestedData['url'] = $row->url;
-                    $nestedData['repeat'] = $row->repeat;
+                    $nestedData['repeat'] = $row->repeat_purchase;
                     $nestedData['price'] = $row->price;
                     $nestedData['action'] = view('wishlist._actions', compact('row'))->render();
                     $data[] = $nestedData;
@@ -133,13 +134,13 @@ class WishlistController extends Controller
                 $wishlist->url = $request->input('url');
                 $wishlist->image = $request->file('image');
                 $wishlist->price = $request->input('price');
-                $wishlist->repeat = $request->input('repeat');
+                $wishlist->repeat_purchase = $request->input('repeat');
                 $wishlist->save();
-                Alert::success('Success', 'Wishlist has been created successfully');
+                Toastr::success('Success', 'Wishlist has been created successfully');
                 return redirect()->back();
             } catch (\Throwable $th) {
                 // throw $th;
-                Alert::error('Error', 'Something went wrong');
+                Toastr::error('Error', 'Something went wrong');
                 return redirect()->back()->withInput();
             }
       }
@@ -166,7 +167,7 @@ class WishlistController extends Controller
       {
         $wishlist = Wishlist::find($id);
         if (!$wishlist) {
-            Alert::error('Error', 'Wishlist not found');
+            Toastr::error('Error', 'Wishlist not found');
             return redirect()->back();
         }
         return view('wishlist.edit', ['wish' => $wishlist]);
@@ -184,7 +185,7 @@ class WishlistController extends Controller
         try {
           $wishlist = Wishlist::find($request->id);
           if (!$wishlist) {
-              Alert::error('Error', 'Wishlist not found');
+              Toastr::error('Error', 'Wishlist not found');
               return redirect()->back();
           }
 
@@ -195,12 +196,12 @@ class WishlistController extends Controller
         }
 
           $wishlist->price = $request->input('price');
-          $wishlist->repeat = $request->input('repeat');
+          $wishlist->repeat_purchase = $request->input('repeat');
           $wishlist->save();
-          Alert::success('Success', 'Wishlist has been updated successfully');
-          return redirect()->route('wishlist.home');
+          Toastr::success('Success', 'Wishlist has been updated successfully');
+          return redirect()->back();
       } catch (Throwable $th) {
-          Alert::error('Error', 'Something went wrong');
+          Toastr::error('Error', 'Something went wrong');
           return redirect()->back()->withInput();
       }
       }
@@ -214,6 +215,7 @@ class WishlistController extends Controller
       public function destroy($id)
       {
         $wishlist = Wishlist::where('id', $id)->delete();
-        return response()->json('Deleted');
+        Toastr::success('Success', 'Wishlist has been deleted successfully');
+        return redirect()->back();
       }
 }

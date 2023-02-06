@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name')->nullable();
             $table->string('image')->nullable();
-            $table->boolean('repeat_purchase')->default(0);
+            $table->boolean('repeat_purchase')->default(0)->nullable();
             $table->text('url')->nullable();
             $table->double('price');
             $table->foreignId('user_id')->nullable()->constrained('users')->onUpdate('cascade')->onDelete('cascade');

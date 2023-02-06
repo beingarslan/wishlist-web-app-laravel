@@ -17,19 +17,19 @@ class CategorySeeder extends Seeder
      */
     public function run()
     {
-      $faker = Factory::create();
-      $users = User::all();
+      // $faker = Factory::create();
+      // $users = User::all();
 
-      $categories=[];
-      for ($i=0; $i < 10; $i++) {
-        $categories[] = [
-          'name' => $faker->name,
-          'user_id' => $users->random()->id,
-          'created_at' => now(),
-          'updated_at' => now()
-        ];
-      }
-      Category::insert($categories);
+      // $categories=[];
+      // for ($i=0; $i < 10; $i++) {
+      //   $categories[] = [
+      //     'name' => $faker->name,
+      //     'user_id' => $users->random()->id,
+      //     'created_at' => now(),
+      //     'updated_at' => now()
+      //   ];
+      // }
+      // Category::insert($categories);
 
     }
 }
