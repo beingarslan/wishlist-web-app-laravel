@@ -64,36 +64,7 @@ class RegisterController extends Controller
      * @return \App\Models\User
      */
 
-    // public function register(Request $request)
-    // {
-    //     $username = $request->username;
-    //     // check if the user name is unique
-    //     $user = User::where('name', $username)->first();
-    //     if ($user) {
-    //         return redirect()->back()->with('error', 'Username already exists');
-    //     }
-    //     return view('auth.register', ['username' => $username]);
-    // }
-
-    // public function registerUser(Request $request)
-    // {
-    //     $data = [
-    //         'name' => $request->name,
-    //         'email' => $request->email,
-    //         'password' => $request->password,
-    //     ];
-    //     $validator = $this->validator($data);
-    //     if ($validator->fails()) {
-    //         return redirect()->back()->with('error', 'Something went wrong');
-    //     }
-    //     $user = $this->create($data);
-    //     if ($user) {
-    //         return redirect()->route('login')->with('success', 'User created successfully');
-    //     }
-    //     return redirect()->back()->with('error', 'Something went wrong');
-
-    // }
-
+    
     protected function create(array $data)
     {
         return User::create([

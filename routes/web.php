@@ -23,8 +23,9 @@ use App\Http\Controllers\laravel_example\UserManagement;
 */
 
 // front-end routes
-Route::get('/', [GuestController::class, 'index']);
+Route::get('/', [GuestController::class, 'index'])->name('home');
 Route::get('/faq', [GuestController::class, 'faq'])->name('faq');
+Route::post('/join-now', [GuestController::class, 'joinNow'])->name('join-now');
 
 Auth::routes();
 
@@ -34,7 +35,7 @@ Route::group(
     ],
     function () {
         // profile
-        Route::get('/{username}', [GuestWishlistController::class, 'index'])->name('home');
+        Route::get('/{username}', [GuestWishlistController::class, 'index']);
 
         // wish part from profile
         Route::group([
@@ -114,4 +115,3 @@ Route::group(
         );
     }
 );
-Route::post('/join-now', [GuestController::class, 'joinNow'])->name('join-now');
