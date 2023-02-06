@@ -14,7 +14,7 @@ class CreatePermissionTables extends Migration
      * @return void
      */
     public function up()
-    {    if(env('APP_ENV') === 'local'){
+    {    if(env('APP_ENV') != 'local'){
       DB::statement('SET SESSION sql_require_primary_key = 0');
     }
 
@@ -121,7 +121,7 @@ class CreatePermissionTables extends Migration
         app('cache')
             ->store(config('permission.cache.store') != 'default' ? config('permission.cache.store') : null)
             ->forget(config('permission.cache.key'));
-            if(env('APP_ENV') === 'local'){
+            if(env('APP_ENV') != 'local'){
               DB::statement('SET SESSION sql_require_primary_key = 1');
             }
 

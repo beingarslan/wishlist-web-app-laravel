@@ -14,7 +14,7 @@ return new class extends Migration
    */
   public function up()
   {
-    if(env('APP_ENV') === 'local'){
+    if(env('APP_ENV') != 'local'){
       DB::statement('SET SESSION sql_require_primary_key = 0');
     }
     Schema::create('password_resets', function (Blueprint $table) {
@@ -22,7 +22,7 @@ return new class extends Migration
       $table->string('token');
       $table->timestamp('created_at')->nullable();
     });
-    if(env('APP_ENV') === 'local'){
+    if(env('APP_ENV') != 'local'){
       DB::statement('SET SESSION sql_require_primary_key = 1');
     }
   }
