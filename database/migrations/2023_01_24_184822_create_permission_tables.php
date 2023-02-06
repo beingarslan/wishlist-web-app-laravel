@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Support\Facades\DB;
 use Spatie\Permission\PermissionRegistrar;
 
 class CreatePermissionTables extends Migration
@@ -13,7 +14,10 @@ class CreatePermissionTables extends Migration
      * @return void
      */
     public function up()
-    {
+    {    if(env('APP_ENV') === 'local'){
+      DB::statement('SET SESSION sql_require_primary_key = 0');
+    }
+
         $tableNames = config('permission.table_names');
         $columnNames = config('permission.column_names');
         $teams = config('permission.teams');
@@ -117,6 +121,10 @@ class CreatePermissionTables extends Migration
         app('cache')
             ->store(config('permission.cache.store') != 'default' ? config('permission.cache.store') : null)
             ->forget(config('permission.cache.key'));
+            if(env('APP_ENV') === 'local'){
+              DB::statement('SET SESSION sql_require_primary_key = 1');
+            }
+
     }
 
     /**
@@ -137,5 +145,6 @@ class CreatePermissionTables extends Migration
         Schema::drop($tableNames['model_has_permissions']);
         Schema::drop($tableNames['roles']);
         Schema::drop($tableNames['permissions']);
+
     }
 }
