@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
 use App\Models\User;
-use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends Controller
 {
@@ -62,6 +63,18 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\Models\User
      */
+
+    public function register(Request $request)
+    {
+        $username = $request->username;
+        // check if the user name is unique
+        $user = User::where('name', $username)->first();
+        if ($user) {
+            return redirect()->back()->with('error', 'Username already exists');
+        }
+        return view('auth.register', ['username' => $username]);
+    }
+
     protected function create(array $data)
     {
         return User::create([

@@ -68,7 +68,7 @@ $configData = Helper::appClasses();
                     <div class="mb-3">
                         <label for="username" class="form-label">Name</label>
                         <input type="text" class="form-control @error('name') is-invalid @enderror" id="username"
-                            name="name" placeholder="Enter your name" autofocus>
+                            name="name" value="{{ isset($username) ? $username : '' }}" placeholder="Enter your name" autofocus>
                         @error('name')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>

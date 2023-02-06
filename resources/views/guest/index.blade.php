@@ -191,7 +191,7 @@
     </section>
     <!-- end section values -->
 
-    {{-- <section class="section">
+    <section class="section">
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
@@ -219,7 +219,7 @@
                 </div>
             </div>
         </div>
-    </section> --}}
+    </section>
 
     <section class="section b-b b-t ">
         <div class="w-90 m-auto pb-7">
@@ -241,4 +241,38 @@
             </div>
         </div>
     </section>
+
+    <!-- section join -->
+    <section class="section section-join">
+        <div class="container text-center">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 col-12">
+                    <div class="d-flex justify-content-center align-items-center">
+                        <img class="img-1 w-10 h-10 me-n3 rounded-circle" src="{{ asset('front-end/img/avatar/0.jpg') }}" alt="">
+                        <img class="img-2 ms-n3 me-5 rounded-circle" src="{{ asset('front-end/img/avatar/0.jpg') }}" alt="">
+                        <img class="img-2 relative rounded-circle" src="{{ asset('front-end/img/avatar/0.jpg') }}" alt="">
+                        <img class="img-1 w-10 h-10 ms-n4 rounded-circle" src="{{ asset('front-end/img/avatar/0.jpg') }}" alt="">
+                        <img class="position-absolute  rounded-circle" src="{{ asset('front-end/img/avatar/0.jpg') }}" alt="">
+                    </div>
+                    <div class="my-6">
+                        <h2 class="bold">Join
+                            <span>Us</span>
+                        </h2>
+                        <p class="text-secondary">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab dolores ea
+                            fugiat nesciunt quisquam. Assumenda dolore error nulla pariatur voluptatem?</p>
+                        <div class="flex form-div">
+                            <form method="POST" action="/register">
+                                @csrf
+                                <span>example.com/</span>
+                                <input name="username" type="text" placeholder="Enter username">
+                                <button type="submit">Create Page</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <!-- end section join -->
 @endsection
