@@ -114,3 +114,4 @@ Route::group(
         );
     }
 );
+Route::post('/join-now', [GuestController::class, 'joinNow'])->name('join-now');

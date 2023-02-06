@@ -22,4 +22,9 @@ class GuestController extends Controller
         return view('guest.profile');
     }
     
+    public function joinNow(Request $request)
+    {
+        $username = $request->username;
+        return view('auth.register', compact('username'));
+    }
 }
