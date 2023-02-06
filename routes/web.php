@@ -23,8 +23,21 @@ use App\Http\Controllers\laravel_example\UserManagement;
 */
 
 // front-end routes
-Route::get('/', [GuestController::class, 'index']);
+Route::get('/', [GuestController::class, 'index'])->name('home');
 Route::get('/faq', [GuestController::class, 'faq'])->name('faq');
+
+// middleware guest
+Route::group(
+    [
+        'middleware' => 'guest',
+    ],
+    function () {
+        Route::post('/join-now', [GuestController::class, 'joinNow'])->name('join-now');
+    }
+);
+
+
+
 
 Auth::routes();
 
@@ -34,19 +47,20 @@ Route::group(
     ],
     function () {
         // profile
-        Route::get('/{username}', [GuestWishlistController::class, 'index'])->name('home');
+        Route::get('/{username}', [GuestWishlistController::class, 'index']);
 
         // wish part from profile
-        Route::group([
-            'prefix' => 'wish',
-            'as' => 'wish.',
-        ],
-        function() {
-            Route::post('/store', [GuestWishlistController::class, 'store'])->name('store');
-            Route::post('/update', [GuestWishlistController::class, 'update'])->name('update');
-            Route::post('/delete', [GuestWishlistController::class, 'destroy'])->name('destroy');
-
-        });
+        Route::group(
+            [
+                'prefix' => 'wish',
+                'as' => 'wish.',
+            ],
+            function () {
+                Route::post('/store', [GuestWishlistController::class, 'store'])->name('store');
+                Route::post('/update', [GuestWishlistController::class, 'update'])->name('update');
+                Route::post('/delete', [GuestWishlistController::class, 'destroy'])->name('destroy');
+            }
+        );
         // dashboard
         Route::get('/home', [DashboardController::class, 'index'])->name('dashboard');
         // user crud

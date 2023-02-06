@@ -51,7 +51,7 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:255', 'unique:users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
@@ -64,17 +64,7 @@ class RegisterController extends Controller
      * @return \App\Models\User
      */
 
-    public function register(Request $request)
-    {
-        $username = $request->username;
-        // check if the user name is unique
-        $user = User::where('name', $username)->first();
-        if ($user) {
-            return redirect()->back()->with('error', 'Username already exists');
-        }
-        return view('auth.register', ['username' => $username]);
-    }
-
+    
     protected function create(array $data)
     {
         return User::create([

@@ -261,7 +261,7 @@
                         <p class="text-secondary">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab dolores ea
                             fugiat nesciunt quisquam. Assumenda dolore error nulla pariatur voluptatem?</p>
                         <div class="flex form-div">
-                            <form method="POST" action="/register">
+                            <form method="POST" action="/join-now">
                                 @csrf
                                 <span>example.com/</span>
                                 <input name="username" type="text" placeholder="Enter username">
