@@ -54,20 +54,27 @@
                 </div>
             </div>
         </div>
-        <div class="profile-img relative">
+        <div class="profile-img">
             <div class="row mt-n8  justify-content-center ">
                 <div class="col-md-2 order-1">
-                    <div class="">
+                    <div class="position-relative d-inline">
                         <img class="img img-fluid img-thumbnail rounded-pill" width="218px" height="218px"
                             src="{{ $user->avatar }}" id="avatar-image" alt="$user->avatar">
-                        <div class="position-relative mt-n6 ms-10">
+                        <div class="position-absolute top-50 start-100 translate-middle">
                             <div style='height: 0px;width: 0px; overflow:hidden;'>
                                 <input type="file" accept="image/*" id="fileInput1" name="avatar" class="image" />
                             </div>
-                            <button id="avatarBtn" class="fs-6 m-0 btn btn-primary btn-circle"
+
+                            <button id="avatarBtn" class="fs-6 m-0 btn btn-primary btn-circle " onclick="fileInput1.click();">
+                            <i class='fa fa-camera' style="float: right !important;"></i>
+
+</button>
+
+
+                            <!-- <button id="avatarBtn" class="fs-6 m-0 btn btn-primary btn-circle "
                                 onclick="fileInput1.click();">
-                                <i class='fa fa-camera'></i>
-                            </button>
+                                <i class='fa fa-camera' style="float: right;"></i>
+                            </button> -->
                         </div>
                     </div>
                 </div>
