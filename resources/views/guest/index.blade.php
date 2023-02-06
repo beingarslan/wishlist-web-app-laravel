@@ -125,23 +125,23 @@
 
     <!-- section values -->
     <section class="section section-values py-7">
-        <div class="text-center">
-            <img src="{{ asset('front-end/img/section2.png') }}" class="img img-fluid" alt="">
+        <div class="text-center m-auto w-75">
+            <img src="{{ asset('front-end/img/section2.png') }}" class="img img-fluid img-responsive" alt="">
         </div>
-        <div class="text-center">
-            <img src="{{ asset('front-end/img/section1.png') }}" class="img img-fluid" alt="">
+        <div class="text-center m-auto w-75">
+            <img src="{{ asset('front-end/img/section1.png') }}" class="img img-fluid img-responsive" alt="">
         </div>
-        <div class="w-90 m-auto p-6 rounded-circle-right rounded-circle-left"
+        <div class="w-90 m-auto py-6 px-lg-6 px-md-4 px-4 rounded-circle-right rounded-circle-left"
             style="background:linear-gradient(141.8deg,#faf3cf 15.7%,#cdf2fd 55.9%,#e0dcfb 109.22%);;">
             <div class="text-center pb-3 m-0">
                 <p class="fa-2x mt-0 p-0 mb-3 bold text-uppercase">A free and safe way to share wishlists.</p>
             </div>
             <div class="row gap-y text-center text-md-left">
-                <div class="col-lg-3 col-md-6">
+                <div class="col-lg-3 col-md-6 col-sm-6 col-12 order-1">
                     <div class="card border-0  lift-hover">
-                        <div class="card-body py-4 rounded-3" style="border-bottom: 20px solid #ffe366;">
+                        <div class="card-body py-4 rounded-3 borderBottom20">
                             <div class="icon">
-                                <img src="front-end/img/icons/icon_wishlist.png" alt="">
+                                <img class="img-responsive" src="front-end/img/icons/icon_wishlist.png" alt="">
                             </div>
                             <h5 class="bold py-3">One Stop Wishlist</h5>
                             <p class="text-secondary">Pick from any online store or create custom cash funds for
@@ -149,11 +149,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-3">
+                <div class="col-lg-3 col-md-6 col-sm-6 col-12 order-2">
                     <div class="card border-0 shadow lift-hover">
-                        <div class="card-body py-4 rounded-3" style="border-bottom: 20px solid #ffe366;">
+                        <div class="card-body py-4 rounded-3 borderBottom20">
                             <div class="icon">
-                                <img src="front-end/img/icons/icon_secure_address.png" alt="">
+                                <img class="img-responsive" src="front-end/img/icons/icon_secure_address.png" alt="">
                             </div>
                             <h5 class="bold py-3">Hide Shipping Address</h5>
                             <p class="text-secondary">Pick from any online store or create custom cash funds for
@@ -161,11 +161,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-3">
+                <div class="col-lg-3 col-md-6 col-sm-6 col-12 order-3">
                     <div class="card border-0 shadow lift-hover">
-                        <div class="card-body py-4 rounded-3" style="border-bottom: 20px solid #ffe366;">
+                        <div class="card-body py-4 rounded-3 borderBottom20">
                             <div class="icon">
-                                <img src="front-end/img/icons/icon_control_orders.png" alt="">
+                                <img class="img-responsive" src="front-end/img/icons/icon_control_orders.png" alt="">
                             </div>
                             <h5 class="bold py-3">Control Orgers</h5>
                             <p class="text-secondary">Pick from any online store or create custom cash funds for
@@ -173,11 +173,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-3">
+                <div class="col-lg-3 col-md-6 col-sm-6 col-12 order-4">
                     <div class="card border-0 shadow lift-hover">
-                        <div class="card-body py-4 rounded-3" style="border-bottom: 20px solid #ffe366;">
+                        <div class="card-body py-4 rounded-3 borderBottom20">
                             <div class="icon">
-                                <img src="front-end/img/icons/icon_secure_address.png" alt="">
+                                <img class="img-responsive" src="front-end/img/icons/icon_secure_address.png" alt="">
                             </div>
                             <h5 class="bold py-3">Non-Judgmental</h5>
                             <p class="text-secondary">Pick from any online store or create custom cash funds for
@@ -212,8 +212,17 @@
                         <p>"With crowdfunding, my community is able to come together and funds items, weather its $1 or
                             $100,
                             everyone can help out with reaching the gift goal."</p>
-                        <p> <img src="{{ asset('front-end/img/avatar/0.jpg') }}" class="img img-fluid w-10 rounded-circle"
-                                alt=""> Yenii, Youtube</p>
+                        <span class="d-flex"> 
+                            <span class="me-2">
+                            <img src="{{ asset('front-end/img/avatar/0.jpg') }}"
+                             class="img img-fluid rounded-circle img-responsive" 
+                             width="25" height="25"
+                                alt=""> 
+                            </span>
+                            <span>
+                            Yenii, Youtube
+                            </span>
+                            </span>
                     </div>
 
                 </div>
