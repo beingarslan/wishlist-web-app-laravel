@@ -326,9 +326,13 @@
         $('.wishId').each(function() {
             var id = $(this).val();
             console.log(id);
-            $(".category-tag").select2({
+            var aboutcard = '#aboutcard-' + id;
+            var categorytag = '#category-tag-' + id;
+            $(categorytag).select2({
                 tags: true,
-                dropdownParent: $('#aboutcard-' + id),
+                
+                dropdownParent: $(aboutcard),
+
             });
         });
     </script>

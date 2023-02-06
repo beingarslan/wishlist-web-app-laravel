@@ -67,7 +67,7 @@
                             <div class="form-group container my-2 text-start">
                                 <label for="category">Select Category</label>
                                 <br>
-                                <select class="category-tag" style="width: 100%" name="categories[]"
+                                <select class="category-tag" id="category-tag-{{ $wish->id }}" style="width: 100%" name="categories[]"
                                     multiple="multiple">
                                     @foreach ($categories as $category)
                                         <option value="{{ $category->id }}">
