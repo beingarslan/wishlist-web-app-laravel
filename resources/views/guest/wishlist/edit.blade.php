@@ -70,7 +70,7 @@
                                 <select class="category-tag" id="category-tag-{{ $wish->id }}" style="width: 100%" name="categories[]"
                                     multiple="multiple">
                                     @foreach ($categories as $category)
-                                        <option value="{{ $category->id }}">
+                                        <option value="{{ $category->name }}">
                                             {{ $category->name }}</option>
                                     @endforeach
                                 </select>

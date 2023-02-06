@@ -40,14 +40,13 @@ class GuestWishlistController extends Controller
         $wishlist->image = $request->file('image');
       }
       $wishlist->save();
-      
+
       if (!$request->categories) {
         Toastr::success('Wishlist added successfully', 'Success');
         return redirect()->back();
       }
-      
+
       $cats = Category::where('user_id', $user->id)->get();
-      // dd($request->categories);
 
       // check if category exists
       foreach ($request->categories as $category) {
@@ -97,13 +96,37 @@ class GuestWishlistController extends Controller
         $wishlist->image = $request->file('image');
       }
       $wishlist->save();
+
+      if (!$request->categories) {
+        Toastr::success('Wishlist added successfully', 'Success');
+        return redirect()->back();
+      }
+
+      $cats = Category::where('user_id', $user->id)->get();
+
+      // check if category exists
       foreach ($request->categories as $category) {
+        $cat = $cats->where('name', $category)->first();
+        if (!$cat) {
+          $cat = Category::create([
+            'user_id' => $user->id,
+            'name' => $category,
+          ]);
+        }
+      }
+
+      $cats = Category::where('user_id', $user->id)->get();
+
+      foreach ($request->categories as $category) {
+        $cat = $cats->where('name', $category)->first();
         CategoryWishlist::create([
           'user_id' => $user->id,
           'wishlist_id' => $wishlist->id,
-          'category_id' => $category
+          'category_id' => $cat->id,
+          'name' => $cat->name,
         ]);
       }
+
       Toastr::success('Wishlist updated successfully', 'Success');
       return redirect()->back();
     } catch (\Exception $e) {

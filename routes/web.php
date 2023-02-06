@@ -34,7 +34,7 @@ Route::group(
     ],
     function () {
         // profile
-        Route::get('/profile', [GuestWishlistController::class, 'index'])->name('home');
+        Route::get('/{username}', [GuestWishlistController::class, 'index'])->name('home');
 
         // wish part from profile
         Route::group([
