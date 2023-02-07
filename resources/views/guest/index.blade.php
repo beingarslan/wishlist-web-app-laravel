@@ -54,16 +54,16 @@
                     <img src="{{ asset('front-end/img/section1.png') }}" class="img img-fluid img-responsive" alt="">
                 </div>
                 <div class="col-md-6 order-lg-1 order-md-1 order-2">
-                    <div class="border-bottom border-2 pb-4 border-danger">
+                    <div class="border-bottom  pb-4">
                         <h2 class="my-4 display-4 bold text-capitalize">Create Your Wishlist</h2>
                         <p class="display-6">
                             Create a privacy-first wishlist with products 
                             from our partner brands or any other store. Share your list with your followers by adding ....
                         </p>
                     </div>
-                    <div class="text-center">
+                    <!-- <div class="text-center">
                     <button class="btn btn-primary mt-4 btn-lg mx-auto fs-3">Create WIshlist</button>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>

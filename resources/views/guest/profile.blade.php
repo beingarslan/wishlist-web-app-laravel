@@ -10,7 +10,7 @@
 <header class="header section mt-5 header section text-contrast  overlay-primary  parallax cover">
     <div class="cover-img relative ">
         <div class="main-img">
-            <img src="{{ asset('front-end/img/header.jpg')}}" class="img-fluid"
+            <img src="{{ asset('front-end/img/header.jpg')}}" class="img-fluid img-responsive"
                 style="background-repeat: no-repeat; background-position: center; " alt="">
         </div>
         <div class="img-btn position-absolute">

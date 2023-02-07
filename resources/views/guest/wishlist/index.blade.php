@@ -11,19 +11,18 @@
     <header class="header section mt-5 header section text-contrast  overlay-primary  parallax cover">
         <div class="cover-img relative ">
             <div class="main-img">
-                <img src="{{ $user->cover_image }}" class="img-fluid cover-image"
-                    style="background-repeat: no-repeat; background-position: center; " id="cover-image" alt="">
+                <img src="{{ $user->cover_image }}" class="img-fluid cover-image img-responsive"
+                    style="background-repeat: no-repeat; background-position: center;" id="cover-image" alt="">
 
             </div>
             <div class="img-btn position-absolute">
                 <div style='height: 0px;width: 0px; overflow:hidden;'>
                     <input type="file" accept="image/*" id="fileInput" name="image" class="image" />
                 </div>
-                <button id="coverBtn" class="fs-6 m-0 btn btn-primary btn-circle" onclick="fileInput.click();">
+                <button id="coverBtn" class="m-0 btn btn-primary btn-circle" onclick="fileInput.click();">
                     <i class='fa fa-camera'></i>
                 </button>
             </div>
-
             <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
                 aria-hidden="true">
                 <div class="modal-dialog modal-lg" role="document">
@@ -54,56 +53,56 @@
                 </div>
             </div>
         </div>
-        <div class="profile-img">
-            <div class="row mt-n8  justify-content-center ">
-                <div class="col-md-2 order-1">
+        <div class="profile-img mx-3">
+            <div class="row mt-nn5  justify-content-start ">
+                <div class="col-2 order-1 mb-25">
                     <div class="position-relative d-inline">
-                        <img class="img img-fluid img-thumbnail rounded-pill" width="218px" height="218px"
+                        <img class="img img-thumbnail rounded-pill imgSixtymin_max-120" 
                             src="{{ $user->avatar }}" id="avatar-image" alt="$user->avatar">
                         <div class="position-absolute top-50 start-100 translate-middle">
                             <div style='height: 0px;width: 0px; overflow:hidden;'>
                                 <input type="file" accept="image/*" id="fileInput1" name="avatar" class="image" />
                             </div>
-
-                            <button id="avatarBtn" class="fs-6 m-0 btn btn-primary btn-circle " onclick="fileInput1.click();">
-                            <i class='fa fa-camera' style="float: right !important;"></i>
-
-</button>
-
-
-                            <!-- <button id="avatarBtn" class="fs-6 m-0 btn btn-primary btn-circle "
-                                onclick="fileInput1.click();">
-                                <i class='fa fa-camera' style="float: right;"></i>
-                            </button> -->
+                            <button id="avatarBtn" class="m-0 rounded-circle mt-5 me-3 bg-primary border-white border text-fluid"
+                             onclick="fileInput1.click();">
+                               <i class='fa fa-camera text-white m-auto' class="img-responsive"></i>
+                           </button>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-8 order-2">
-                    <span class="text-white d-block text-capitalize mt-sm-5"
-                        style="font-size: 2rem; font-weight: 600;">{{ $user->name }}</span>
+                <div class="col-md-8 col-sm-8 col-lg-8 mt-md-n2  mt-sm-n5 mt-2 order-2" style="z-index: 2; font-size: calc(14px + (26 - 14) * ((100vw - 300px) / (1600 - 300)));">
+                    <span class="text-white d-block text-capitalize mt-sm-5 mt-md-n2"
+                        style="font-size: 1.5rem; font-weight: 600; z-index:2;">{{ $user->name }}</span>
                     <span>{{ $user->wishlist_name }}</span>
                 </div>
             </div>
         </div>
-        <div class="d-flex my-4 container">
-            <div class="col-md-5 text-end">
+        <div class="d-flex mb-4 container">
+            <div class="col-md-5 text-center">
                 <div class="message-form d-none">
 
                     <input name="description" class="messageContent" type="text" placeholder="Enter description">
-                    <button class="submitMessage btn btn-sm border-0"> <i class="fa fa-check text-dark"></i></button>
+                    <button class="submitMessage btn btn-sm border-0"> 
+                        <i class="fa fa-check text-dark"></i>
+                    </button>
 
                 </div>
                 <div class="message">
                     <p class="messageValue d-inline text-center align-items-center text-black">
-                        {{ isset($user->description) ? $user->description : 'No description yet' }}</p>
-                    <button class="addMessage btn btn-sm border-0"><i class="ms-2 fa fa-pencil-alt"></i></button>
+                        {{ isset($user->description) ? $user->description : 'No description yet' }}
+                    </p>
+                    <button class="addMessage btn btn-sm border-0">
+                        <i class="ms-2 fa fa-pencil-alt"></i>
+                    </button>
                 </div>
             </div>
             <div class="ms-auto">
                 <button data-bs-toggle="modal" data-bs-target="#editModel"
-                    class="btn btn-primary py-2 text-capitalize text-center align-items-center">Edit
-                    profile</button>
+                    class="btn btn-primary py-2 text-capitalize text-center align-items-center">
+                    Edit profile
+                </button>
             </div>
+        
             <div class="modal fade" id="editModel" tabindex="-1" aria-labelledby="editModel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
@@ -160,11 +159,11 @@
 
     <!-- section wishes -->
     <section class="section section-wishes">
-        <div class="container p-2 d-block d-md-flex">
-            <p class="text-center">Wishes: 0/0</p>
-            <div class="ms-auto my-auto btns">
+        <div class="container py-3 d-block d-md-flex text-center">
+            <p class="text-center d-inline me-2">Wishes: 0/0</p>
+            <div class="ms-md-auto my-auto btns d-inline">
 
-                <button class="btn btn-rounded btn-outline-primary" type="button" id="dropdownMenuButton"
+                <button class="btn btn-rounded btn-outlinesm-primary mb-2 border-purple" type="button" id="dropdownMenuButton"
                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">CATEGORIES</button>
                 <div class="dropdown-menu p-3" aria-labelledby="dropdownMenuButton">
                     <div class="d-flex my-2 justify-content-between">
@@ -183,8 +182,8 @@
                     </div>
                 </div>
 
-                <button class="btn btn-rounded btn-outline-primary"><i class="fa fa-list"></i></button>
-                <button type="button" class="btn btn-rounded btn-outline-primary" data-bs-toggle="modal"
+                <button class="btn btn-rounded btn-outlinesm-primary mb-2 mx-auto"><i class="fa fa-list"></i></button>
+                <button type="button" class="btn rounded-pill btn-outlinesm-primary mb-2 mx-auto" data-bs-toggle="modal"
                     data-bs-target="#addWishModel">
                     ADD A WISH
                 </button>
