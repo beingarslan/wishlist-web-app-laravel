@@ -3865,6 +3865,22 @@ fieldset:disabled .btn {
   background-color: #00c9b7;
   border-color: #00c9b7;
 }
+.btn-purple{
+  background-color:#80368f;
+  color: #fff;
+}
+.btn-purple:hover {
+  color: #ffffff;
+  background-color: #9523ac;
+  font-weight: 500;
+  /* border-color: #1aaae3; */
+}
+.border-purple{
+  border: 4px solid #80368f;
+}
+.border-purple:hover{
+  border: 4px solid #9523ac;
+}
 
 .btn-info {
   color: #161c2d;

@@ -26,111 +26,59 @@
 
 
     <!-- section checks -->
-
-
-    {{-- <section class="section section-checks py-7">
-        <div class="w-90 m-auto bg-gray-light rounded-circle-right rounded-circle-left">
-            <div class="row">
-                <div class="col-md-5 align-items-center my-auto text-center">
-
-
-                    <ul>
-                        <li class="p-0 m-0">
-                            <div class="d-flex py-2">
-                                <div class="icon border-2 border border-black bg-white">
-                                    <img src="{{ asset('front-end/img/icons/icons8-done-48.png') }}" alt="">
-                                </div>
-                                <span class="text-black fa-2x text-truncate text-start" style="font-weight: 400;"> Get the
-                                    cash for your gifts</span>
-                            </div>
-
-                        </li>
-                        <li class="p-0 m-0">
-                            <div class="d-flex py-2">
-                                <div class="icon border-2 border border-black bg-white">
-                                    <img src="{{ asset('front-end/img/icons/icons8-done-48.png') }}" alt="">
-                                </div>
-                                <span class="text-black fa-2x text-truncate text-start" style="font-weight: 400;">Handle the
-                                    funds as you like</span>
-                            </div>
-
-                        </li>
-                        <li class="p-0 m-0">
-                            <div class="d-flex py-2">
-                                <div class="icon border-2 border border-black bg-white">
-                                    <img src="{{ asset('front-end/img/icons/icons8-done-48.png') }}" alt="">
-                                </div>
-                                <span class="text-black fa-2x text-truncate text-start" style="font-weight: 400;">100%
-                                    payout*</span>
-                            </div>
-                        </li>
-                        <li class="p-0 m-0">
-                            <div class="d-flex py-2">
-                                <div class="icon border-2 border border-black bg-white">
-                                    <img src="{{ asset('front-end/img/icons/icons8-done-48.png') }}" alt="">
-                                </div>
-                                <span class="text-black fa-2x text-truncate text-start" style="font-weight: 400;">Send photo
-                                    thank-you messages</span>
-                            </div>
-
-                        </li>
-                        <li class="p-0 m-0">
-                            <div class="d-flex py-2">
-                                <div class="icon border-2 border border-black bg-white">
-                                    <img src="{{ asset('front-end/img/icons/icons8-done-48.png') }}" alt="">
-                                </div>
-                                <span class="text-black fa-2x text-truncate text-start">Fraud chargeback protection</span>
-                            </div>
-                        </li>
-                        <li class="p-0 m-0">
-                            <div class="d-flex py-2">
-                                <div class="icon border-2 border border-black bg-white">
-                                    <img src="{{ asset('front-end/img/icons/icons8-done-48.png') }}" alt="">
-                                </div>
-                                <span class="text-black fa-2x text-truncate text-start">Two way anonymity</span>
-                            </div>
-                        </li>
-                        <li class="p-0 m-0">
-                            <div class="d-flex py-2">
-                                <div class="icon border-2 border border-black bg-white">
-                                    <img src="{{ asset('front-end/img/icons/icons8-done-48.png') }}" alt="">
-                                </div>
-                                <span class="text-black fa-2x text-truncate text-start">Supports 52 countries and
-                                    counting</span>
-                            </div>
-                        </li>
-                        <li class="p-0 m-0">
-                            <div class="d-flex py-2">
-                                <div class="icon border-2 border border-black bg-white">
-                                    <img src="{{ asset('front-end/img/icons/icons8-done-48.png') }}" alt="">
-                                </div>
-                                <span class="text-black fa-2x text-truncate text-start">Livestream gift notifications</span>
-                            </div>
-                        </li>
-                    </ul>
-                    <div class="d-flex ms-3">
-                        <span class="text-black fa-2x mt-n2 text-truncate text-start" style="font-weight: 400;">(*currency
-                            conversions may reduce payout)</span>
-                    </div>
-
-
+    <section class="section pt-5">
+        <div class="w-90 m-auto">
+            <div class="row text-center text-lg-start text-md-start">
+                <div class="col-md-6 order-lg-2 order-md-2 order-1">
+                <img src="{{ asset('front-end/img/section2.png') }}" class="img img-fluid img-responsive" alt="">
                 </div>
-                <div class="col-md-7">
-                    <img src="{{ asset('front-end/img/gift_images/yu-wsh-u.png') }}" class="img-fluid img-responsive"
-                        data-aos="fade-right" alt="">
+                <div class="col-md-6 order-lg-1 order-md-1 order-2">
+                    <div class="border-bottom border-2 pb-4 border-danger">
+                        <h2 class="my-4 display-4 bold text-capitalize">Create Your Wishlist</h2>
+                        <p class="display-6">
+                            Create a privacy-first wishlist with products 
+                            from our partner brands or any other store. Share your list with your followers by adding ....
+                        </p>
+                    </div>
+                    <div class="text-center">
+                    <button class="btn btn-primary mt-4 btn-lg mx-auto fs-3">Create WIshlist</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </section> --}}
+    </section>
+    <section class="section pt-5">
+        <div class="w-90 m-auto">
+            <div class="row text-center text-lg-start text-md-start">
+                <div class="col-md-6 order-1">
+                    <img src="{{ asset('front-end/img/section1.png') }}" class="img img-fluid img-responsive" alt="">
+                </div>
+                <div class="col-md-6 order-lg-1 order-md-1 order-2">
+                    <div class="border-bottom border-2 pb-4 border-danger">
+                        <h2 class="my-4 display-4 bold text-capitalize">Create Your Wishlist</h2>
+                        <p class="display-6">
+                            Create a privacy-first wishlist with products 
+                            from our partner brands or any other store. Share your list with your followers by adding ....
+                        </p>
+                    </div>
+                    <div class="text-center">
+                    <button class="btn btn-primary mt-4 btn-lg mx-auto fs-3">Create WIshlist</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   
 
     <!-- section values -->
     <section class="section section-values py-lg-7 py-md-5 py-4">
-        <div class="text-center m-auto w-75">
+        <!-- <div class="text-center m-auto w-75">
             <img src="{{ asset('front-end/img/section2.png') }}" class="img img-fluid img-responsive" alt="">
         </div>
         <div class="text-center m-auto w-75">
             <img src="{{ asset('front-end/img/section1.png') }}" class="img img-fluid img-responsive" alt="">
-        </div>
+        </div> -->
         <div class="w-90 m-auto py-6 px-lg-6 px-md-4 px-4 rounded-circle-right rounded-circle-left"
             style="background:linear-gradient(141.8deg,#faf3cf 15.7%,#cdf2fd 55.9%,#e0dcfb 109.22%);;">
             <div class="text-center pb-3 m-0">
@@ -194,10 +142,10 @@
     <section class="section pb-5">
         <div class="w-90 m-auto">
             <div class="row text-center text-lg-start text-md-start">
-                <div class="col-md-6">
+                <div class="col-md-6 order-1">
                     <img src="{{ asset('front-end/img/section1.png') }}" class="img img-fluid img-responsive" alt="">
                 </div>
-                <div class="col-md-6 py-lg-7 py-md-5 py-1">
+                <div class="col-md-6 order-2 py-lg-7 py-md-5 py-1">
                     <div class="border-bottom border-1 pb-4 border-black">
                         <button class="btn btn-lg btn-primary"> 
                             <i class="fa fa-gift fa-2x"></i>
@@ -247,9 +195,11 @@
                          <i class="ms-3 fas fa-long-arrow-alt-right"></i>
                      </a>
                 </div>
-                <div class="col-lg-5 order-2 ms-lg-auto">
-                    <img src="front-end/img/gift_images/valentine_3.webp" alt="" srcset=""
+                <div class="col-lg-5 order-2 ">
+                <img src="{{ asset('front-end/img/section1.png') }}" class="img img-fluid img-responsive" alt="" srcset=""
                         data-aos="fade-left">
+                    <!-- <img src="front-end/img/gift_images/valentine_3.webp" alt="" srcset=""
+                        data-aos="fade-left"> -->
                 </div>
             </div>
         </div>
@@ -261,11 +211,11 @@
             <div class="row justify-content-center">
                 <div class="col-lg-8 col-12">
                     <div class="d-flex justify-content-center align-items-center">
-                        <img class="img-1 w-10 h-10 me-n3 rounded-circle" src="{{ asset('front-end/img/avatar/0.jpg') }}" alt="">
-                        <img class="img-2 ms-n3 me-5 rounded-circle" src="{{ asset('front-end/img/avatar/0.jpg') }}" alt="">
-                        <img class="img-2 relative rounded-circle" src="{{ asset('front-end/img/avatar/0.jpg') }}" alt="">
-                        <img class="img-1 w-10 h-10 ms-n4 rounded-circle" src="{{ asset('front-end/img/avatar/0.jpg') }}" alt="">
-                        <img class="position-absolute  rounded-circle" src="{{ asset('front-end/img/avatar/0.jpg') }}" alt="">
+                        <img class="img-1 w-10 h-10 me-n3 rounded-circle img-responsive" src="{{ asset('front-end/img/avatar/0.jpg') }}" alt="">
+                        <img class="img-2 ms-n3 me-5 rounded-circle img-responsive" src="{{ asset('front-end/img/avatar/0.jpg') }}" alt="">
+                        <img class="img-2 relative rounded-circle img-responsive" src="{{ asset('front-end/img/avatar/0.jpg') }}" alt="">
+                        <img class="img-1 w-10 h-10 ms-n4 rounded-circle img-responsive" src="{{ asset('front-end/img/avatar/0.jpg') }}" alt="">
+                        <img class="position-absolute  rounded-circle img-responsive" src="{{ asset('front-end/img/avatar/0.jpg') }}" alt="">
                     </div>
                     <div class="my-6">
                         <h2 class="bold">Join
@@ -273,14 +223,24 @@
                         </h2>
                         <p class="text-secondary">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab dolores ea
                             fugiat nesciunt quisquam. Assumenda dolore error nulla pariatur voluptatem?</p>
-                        <div class="flex form-div">
                             <form method="POST" action="/join-now">
                                 @csrf
-                                <span>example.com/</span>
-                                <input name="username" type="text" placeholder="Enter username">
-                                <button type="submit">Create Page</button>
+                                <!-- <span class="d-md-flex d-lg-flex "> -->
+                                <div class="input-group d-md-flex d-lg-flex  justify-content-center gap-2">
+                                    <span class="input-group-text border-purple rounded-pill">example.com/</span>
+                                    <input class=" border-purple px-2 rounded-pill" name="username" type="text"   style="outline:none;" placeholder="Enter username" placeholder="Comment">
+                                    <button type="submit" class="rounded-pill border-purple btn-purple ms-2">Create Page</button>
+                                
+                                </div>
+                                    <!-- <span class="border-purple btn-lg rounded-3  ms-2 order-3 order-lg-1 order-md-1">
+                                        example.com/
+                                    </span>
+                                        <input name="username" type="text"
+                                         class="border-purple btn-lg rounded-3 bg-white my-4 my-md-1 ms-2 order-1 order-lg-2 order-md-2"
+                                          style="outline:none;" placeholder="Enter username"> -->
+                               <!-- </span> -->
                             </form>
-                        </div>
+                        
                     </div>
                 </div>
             </div>
