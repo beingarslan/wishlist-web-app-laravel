@@ -1,4 +1,4 @@
-<footer class="site-footer section" style="background-color: #def4fd;">
+<footer class="site-footer section bgLightBlue">
   <div class="w-90 m-auto py-5">
       <div class="row gap-y text-center text-md-start">
           <div class="col-md-4 me-auto">
