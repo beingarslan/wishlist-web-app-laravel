@@ -28,6 +28,18 @@
                   <small class="nav-item py-2" href="#">(You can contact me here ^ too!) </small>
               </nav>
           </div>
+          <div class="col-md-1">
+              <!-- <h6 class="py-2 bold text-uppercase">Contact</h6>
+              <nav class="nav flex-column">
+                  <a class="nav-item py-2" href="#">support@wishtender.com</a>
+                  <p class="gap-3 row">
+                      <a href="#" class="btn btn-circle btn-sm btn-light"><i class="fab fa-twitter font-regular"></i></a>
+                      <a href="#" class="btn btn-circle btn-sm btn-light"><i class="fab fa-instagram font-regular"></i></a>
+                  </p>
+                  <a class="nav-item py-2" href="#">Built By Dashiell Bark-Huss:</a>
+                  <small class="nav-item py-2" href="#">(You can contact me here ^ too!) </small>
+              </nav> -->
+          </div>
       </div>
   </div>
 </footer>

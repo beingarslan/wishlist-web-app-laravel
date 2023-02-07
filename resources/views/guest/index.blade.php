@@ -124,7 +124,7 @@
     </section> --}}
 
     <!-- section values -->
-    <section class="section section-values py-7">
+    <section class="section section-values py-lg-7 py-md-5 py-4">
         <div class="text-center m-auto w-75">
             <img src="{{ asset('front-end/img/section2.png') }}" class="img img-fluid img-responsive" alt="">
         </div>
@@ -191,15 +191,17 @@
     </section>
     <!-- end section values -->
 
-    <section class="section">
-        <div class="container">
-            <div class="row">
+    <section class="section pb-5">
+        <div class="w-90 m-auto">
+            <div class="row text-center text-lg-start text-md-start">
                 <div class="col-md-6">
-                    <img src="{{ asset('front-end/img/section1.png') }}" class="img img-fluid" alt="">
+                    <img src="{{ asset('front-end/img/section1.png') }}" class="img img-fluid img-responsive" alt="">
                 </div>
-                <div class="col-md-6 py-7">
+                <div class="col-md-6 py-lg-7 py-md-5 py-1">
                     <div class="border-bottom border-1 pb-4 border-black">
-                        <button class="btn btn-lg btn-primary"> <i class="fa fa-gift fa-2x"></i> </button>
+                        <button class="btn btn-lg btn-primary"> 
+                            <i class="fa fa-gift fa-2x"></i>
+                         </button>
                         <h2 class="my-4 bold">Create Your Wishlist</h2>
                         <p>Create a privacy first wishlist with products from out partner brands or other stores.
                             Share your wishlist with your followers by adding it to your bio and telling your fans about
@@ -212,7 +214,7 @@
                         <p>"With crowdfunding, my community is able to come together and funds items, weather its $1 or
                             $100,
                             everyone can help out with reaching the gift goal."</p>
-                        <span class="d-flex"> 
+                        <span class="d-flex justify-content-center justify-content-lg-start justify-content-md-start"> 
                             <span class="me-2">
                             <img src="{{ asset('front-end/img/avatar/0.jpg') }}"
                              class="img img-fluid rounded-circle img-responsive" 
@@ -240,8 +242,10 @@
                         with gifts from any retailer and have full control of privacy and orders. We're
                         customer-focused; Building out the site with feedback from customers like you every step of
                         the way.</p>
-                    <a href="pricing.html" class="btn btn-primary btn-rounded mt-4">Choose the right
-                        plan <i class="ms-3 fas fa-long-arrow-alt-right"></i></a>
+                    <a href="pricing.html" class="btn btn-primary btn-rounded my-4">
+                        Choose the right plan
+                         <i class="ms-3 fas fa-long-arrow-alt-right"></i>
+                     </a>
                 </div>
                 <div class="col-lg-5 order-2 ms-lg-auto">
                     <img src="front-end/img/gift_images/valentine_3.webp" alt="" srcset=""
