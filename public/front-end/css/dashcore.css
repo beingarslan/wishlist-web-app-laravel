@@ -32616,7 +32616,7 @@ section.shadow,
 }
 
 .btn-outlinesm-primary:hover {
-  color: #ffffff;
+  color: #ffffff !important;
   background-color: #5533ff !important;
   border: 4px solid #9523ac !important;
   /* border-color: #5533ff; */
