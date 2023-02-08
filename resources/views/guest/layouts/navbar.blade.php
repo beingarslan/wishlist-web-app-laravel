@@ -19,23 +19,23 @@
             <ul class="navbar-nav">
                 <li class="nav-item px-0 px-md-2">
                     <a class="nav-link active" aria-current="page" href="{{ url('/faq') }}">
-                        <img src="{{ asset('front-end/img/nav-icons/2.png') }}" alt="">
+                        <img src="{{ asset('front-end/img/nav-icons/2.png') }}"  alt="">
                     </a>
                 </li>
                 <li class="nav-item px-0 px-md-2">
                     <a class="nav-link" href="#">
-                        <img src="{{ asset('front-end/img/nav-icons/1.png') }}" alt="">
+                        <img src="{{ asset('front-end/img/nav-icons/1.png') }}"  alt="">
                     </a>
                 </li>
                 <li class="nav-item px-0 px-md-2">
                     <a class="nav-link" href="#">
-                        <img src="{{ asset('front-end/img/nav-icons/4.png') }}" alt="">
+                        <img src="{{ asset('front-end/img/nav-icons/4.png') }}"  alt="">
                     </a>
                 </li>
                 <li class="nav-item px-0 px-md-2">
                     {{-- {{ dd(auth()->user()->name) }} --}}
                     <a class="nav-link" href="/{{ $userName }}">
-                        <img src="{{ asset('front-end/img/nav-icons/3.png') }}" alt="">
+                        <img src="{{ asset('front-end/img/nav-icons/3.png') }}"  alt="">
                     </a>
                 </li>
                 <li class="nav-item px-0 px-md-2">
@@ -51,7 +51,7 @@
                     @else
                         <a class="nav-link navbar-brand" style="color:#80368f" aria-current="page"
                             href="{{ url('/login') }}">
-                            Login
+                            login
                         </a>
                     @endif
                 </li>
