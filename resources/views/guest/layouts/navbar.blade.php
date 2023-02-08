@@ -6,7 +6,7 @@
     } else {
         $userName = 'login';
     }
-    
+
 @endphp
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
     <div class="container-fluid">
@@ -28,7 +28,7 @@
                     </a>
                 </li>
                 <li class="nav-item px-0 px-md-2">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="{{ route('cart.index') }}">
                         <img src="{{ asset('front-end/img/nav-icons/4.png') }}" alt="">
                     </a>
                 </li>

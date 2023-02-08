@@ -2,9 +2,9 @@
   <div class="w-90 m-auto py-5">
       <div class="row gap-y text-center text-md-start">
           <div class="col-md-4 me-auto">
-              <img src="front-end/img/gift_images/logo-wishtender.png" alt="" class="logo">
+              <img src=" {{ asset('front-end/img/gift_images/logo-wishtender.png') }}" alt="" class="logo">
               <p>
-                  <img src="front-end/img/gift_images/powered-by-Stripe.png" alt="" class="logo">
+                  <img src="{{asset('front-end/img/gift_images/powered-by-Stripe.png')}} " alt="" class="logo">
               </p>
           </div>
           <div class="col-md-2">

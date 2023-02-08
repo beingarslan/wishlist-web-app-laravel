@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\GuestController;
 use App\Http\Controllers\CategoryController;
@@ -126,5 +127,23 @@ Route::group(
                 Route::get('/{id}', [CategoryController::class, 'show'])->name('show');
             }
         );
+
+        Route::group(
+          [
+              'prefix' => 'cart',
+              'as' => 'cart.'
+          ],
+          function () {
+            Route::get('/', [CartController::class, 'index'])->name('home');
+            Route::post('/add-to-cart', [CartController::class, 'add'])->name('add');
+            Route::get('/index', [CartController::class, 'index'])->name('index');
+            Route::post('/remove', [CartController::class, 'remove'])->name('remove');
+            Route::post('/update', [CartController::class, 'update'])->name('update');
+
+
+            // Route::post('/update', [GuestWishlistController::class, 'update'])->name('update');
+            // Route::post('/delete', [GuestWishlistController::class, 'destroy'])->name('destroy');
+          }
+      );
     }
 );

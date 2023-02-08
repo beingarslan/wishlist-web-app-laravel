@@ -182,6 +182,7 @@ return [
     App\Providers\MenuServiceProvider::class,
     Intervention\Image\ImageServiceProvider::class,
     RealRashid\SweetAlert\SweetAlertServiceProvider::class,
+    Darryldecode\Cart\CartServiceProvider::class,
 
   ],
 
@@ -200,7 +201,8 @@ return [
     // ...
     'Helper' => App\Helpers\Helpers::class,
     'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
-    'Image' => Intervention\Image\Facades\Image::class
+    'Image' => Intervention\Image\Facades\Image::class,
+    'Cart' => Darryldecode\Cart\Facades\CartFacade::class
   ])->toArray(),
 
 ];
