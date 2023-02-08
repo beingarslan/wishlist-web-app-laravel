@@ -11,9 +11,12 @@
     <header class="header section mt-5 header section text-contrast  overlay-primary  parallax cover">
         <div class="cover-img relative ">
             <div class="main-img">
-                <img src="{{ $user->cover_image }}" class="img-fluid cover-image img-responsive"
-                    style="background-repeat: no-repeat; background-position: center;" id="cover-image" alt="">
-
+                <img src="{{ $user->cover_image }}" class="img-fluid cover-image img-responsive" 
+                style="min-height: 12%;
+   min-width:100%;
+    max-height:15%;
+     max-width: 100%"  id="cover-image" alt="">
+<!--   style="background-repeat: no-repeat; background-position: center;" -->
             </div>
             <div class="img-btn position-absolute">
                 <div style='height: 0px;width: 0px; overflow:hidden;'>
@@ -68,35 +71,8 @@
                                <i class='fa fa-camera text-white m-auto' class="img-responsive"></i>
                            </button>
                         </div>
-                    </div>
-                </div>
-                <div class="col-md-8 col-sm-8 col-lg-8 mt-md-n2  mt-sm-n5 mt-2 order-2" style="z-index: 2; font-size: calc(14px + (26 - 14) * ((100vw - 300px) / (1600 - 300)));">
-                    <span class="text-white d-block text-capitalize mt-sm-5 mt-md-n2"
-                        style="font-size: 1.5rem; font-weight: 600; z-index:2;">{{ $user->name }}</span>
-                    <span>{{ $user->wishlist_name }}</span>
-                </div>
-            </div>
-        </div>
-        <div class="d-flex mb-4 container">
-            <div class="col-md-5 text-center">
-                <div class="message-form d-none">
-
-                    <input name="description" class="messageContent" type="text" placeholder="Enter description">
-                    <button class="submitMessage btn btn-sm border-0"> 
-                        <i class="fa fa-check text-dark"></i>
-                    </button>
-
-                </div>
-                <div class="message">
-                    <p class="messageValue d-inline text-center align-items-center text-black">
-                        {{ isset($user->description) ? $user->description : 'No description yet' }}
-                    </p>
-                    <button class="addMessage btn btn-sm border-0">
-                        <i class="ms-2 fa fa-pencil-alt"></i>
-                    </button>
-                </div>
-            </div>
-            <div class="ms-auto">
+                        <div class="position-absolute top-100 start-50 ms-9 w-100 mt-3 translate-middle "
+                         style="z-index:2;">
                 <button data-bs-toggle="modal" data-bs-target="#editModel"
                     class="btn btn-primary py-2 text-capitalize text-center align-items-center">
                     Edit profile
@@ -134,6 +110,35 @@
                     </div>
                 </div>
             </div>
+                    </div>
+                </div>
+                <div class="col-md-8 col-sm-8 col-lg-8 mt-md-n2  mt-sm-n5 mt-2 order-2" style="z-index: 2; font-size: calc(14px + (26 - 14) * ((100vw - 300px) / (1600 - 300)));">
+                    <span class="text-white d-block text-capitalize mt-sm-5 mt-md-n2"
+                        style="font-size: 1.5rem; font-weight: 600; z-index:2;">{{ $user->name }}</span>
+                    <span>{{ $user->wishlist_name }}</span>
+                </div>
+            </div>
+        </div>
+        <div class="mb-4 mt-lg-n5 container">
+                <div class="col-md-12 text-center">
+                <div class="message-form d-none">
+
+                    <input name="description" class="messageContent" type="text" placeholder="Enter description">
+                    <button class="submitMessage btn btn-sm border-0"> 
+                        <i class="fa fa-check text-dark"></i>
+                    </button>
+
+                </div>
+                <div class="message">
+                    <p class="messageValue d-inline text-center align-items-center text-black">
+                        {{ isset($user->description) ? $user->description : 'No description yet' }}
+                    </p>
+                    <button class="addMessage btn btn-sm border-0">
+                        <i class="ms-2 fa fa-pencil-alt"></i>
+                    </button>
+                </div>
+            </div>
+           
         </div>
     </header>
     <!-- end header -->
@@ -162,7 +167,6 @@
         <div class="container py-3 d-block d-md-flex text-center">
             <p class="text-center d-inline me-2">Wishes: 0/0</p>
             <div class="ms-md-auto my-auto btns d-inline">
-
                 <button class="btn btn-rounded btn-outlinesm-primary mb-2 border-purple" type="button" id="dropdownMenuButton"
                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">CATEGORIES</button>
                 <div class="dropdown-menu p-3" aria-labelledby="dropdownMenuButton">

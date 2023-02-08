@@ -32610,19 +32610,15 @@ section.shadow,
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
 }
 .btn-outlinesm-primary {
-  color: #5533ff !important;
+  color: #80368f !important;
   border: 4px solid #80368f !important;
   /* border-color: #5533ff; */
 }
 
 .btn-outlinesm-primary:hover {
-  color: #ffffff;
-  background-color: #5533ff !important;
+  color: #ffffff !important;
+  background-color: #9523ac !important;
   border: 4px solid #9523ac !important;
   /* border-color: #5533ff; */
 }
-
-/* body {
-  font-size: calc(14px + (26 - 14) * ((100vw - 300px) / (1600 - 300)));
-} */
 /*# sourceMappingURL=dashcore.css.map */
