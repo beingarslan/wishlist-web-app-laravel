@@ -7272,7 +7272,7 @@ fieldset:disabled .btn {
   outline: 0;
 }
 
-.modal-backdrop {
+/* .modal-backdrop {
   position: fixed;
   top: 0;
   left: 0;
@@ -7288,7 +7288,7 @@ fieldset:disabled .btn {
 
 .modal-backdrop.show {
   opacity: 0.5;
-}
+} */
 
 .modal-header {
   display: -webkit-box;
@@ -32621,4 +32621,251 @@ section.shadow,
   border: 4px solid #9523ac !important;
   /* border-color: #5533ff; */
 }
+
+
+
+/* Wish list hone page section heder style */
+
+.wishlist {
+  background-color: #f7f7f7;
+  height: 100%
+}
+/* profile_section */
+.profileSection {
+  box-sizing: content-box;
+  position: relative
+}
+
+.editProfileButtonContainer {
+  position: absolute;
+  right: 1vw;
+  top: 30.5vw
+}
+
+@media only screen and (min-width: 600px) {
+  .editProfileButtonContainer {
+      position:absolute;
+      top: 30.5vw
+  }
+}
+
+@media only screen and (min-width: 960px) {
+  .editProfileButtonContainer {
+      position:absolute;
+      top: 25.5vw
+  }
+}
+
+.info {
+  border-bottom: 1px solid #e0e0e0;
+  padding: 20vw 4% 4%;
+  position: relative
+}
+
+.wishlistName {
+  font-size: 1.2rem;
+  font-weight: 500
+}
+
+.userName {
+  color: gray;
+  font-size: .9rem;
+  padding-bottom: 2%
+}
+
+.profileMessage {
+  font-size: .9rem;
+  font-style: italic;
+  height: 30px
+}
+
+.profilePictureContainer {
+  border: 5px solid #00000000;
+  padding-bottom: 1%;
+  width: 25%
+}
+
+@media only screen and (min-width: 600px) {
+  .info .container.flex {
+      align-items:flex-end;
+      display: flex
+  }
+
+  .profilePictureContainer {
+      padding-bottom: 0;
+      -webkit-transform: translateY(50%);
+      transform: translateY(50%);
+      width: 20%
+  }
+
+  .container.name {
+      flex-grow: 1
+  }
+
+  .info {
+      padding-top: 10vw
+  }
+
+  .wishlistName {
+      font-size: 3rem;
+      font-weight: 700
+  }
+
+  .profileMessage {
+      font-size: 1.3rem;
+      margin-left: 25%
+  }
+
+  .userName,.wishlistName {
+      color: #fff;
+      padding-left: 8%
+  }
+
+  .userName {
+      font-size: 1.3rem;
+      font-weight: 700
+  }
+
+  .profileMessage {
+      padding-top: 3%
+  }
+
+  .info {
+      padding-bottom: 5%
+  }
+}
+
+@media only screen and (min-width: 960px) {
+  .profilePictureContainer {
+      -webkit-transform:translateY(40%);
+      transform: translateY(40%);
+      width: 15%
+  }
+
+  .profileMessage {
+      margin-left: 18%
+  }
+
+  .info {
+      padding-bottom: 2%
+  }
+}
+
+/* .editable_profilePictureContainer {
+  position: relative
+} */
+
+.updateProfilePictureButtoncontainer {
+  bottom: 15%;
+  position: absolute;
+  right: 16%;
+  -webkit-transform: translate(50%,50%);
+  transform: translate(50%,50%);
+  z-index: 100
+}
+
+.profilePicture {
+  border-radius: 50%;
+  -webkit-box-shadow: 0 0 0 5px #fff;
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  width: 100%
+}
+
+.profilePicture:after {
+  content: "";
+  display: block;
+  padding-bottom: 100%
+}
+
+.profilePicture img {
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  width: 100%
+}
+
+.crop-container {
+  position: relative;
+  text-align: center
+}
+
+.crop-container,.crop-container>* {
+  box-sizing: border-box
+}
+
+.crop-preview {
+  background: #000;
+  border: 1px solid #d3d3d3;
+  bottom: 80px;
+  left: 0;
+  margin: auto;
+  position: absolute;
+  position: relative;
+  right: 0;
+  top: 0;
+  width: 100%;
+  width: 70%
+}
+
+.crop-preview:after {
+  content: "";
+  display: block;
+  padding-bottom: 100%
+}
+
+.crop-controls {
+  align-items: center;
+  font-size: .9em;
+  margin: 5% 10%;
+  position: relative
+}
+
+/* coverImages start secion  */
+
+.coverImage img {
+  opacity: .78;
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  width: 100%
+}
+.editable_profile_picture__container {
+  position: relative
+}
+.coverImage {
+  background-size: cover;
+  height: 30vw;
+  overflow: hidden;
+  position: relative;
+  width: 100%
+}
+
+@media only screen and (min-width: 600px) {
+  .coverImage {
+      height:30vw
+  }
+}
+
+@media only screen and (min-width: 960px) {
+  .coverImage {
+      height:25vw
+  }
+}
+/* editable_coverImages */
+.editableCoverImage {
+  position: absolute;
+  width: 100%
+}
+/* editable_coverImages */
+/* editable images button container */
+.editImageButtonContainer {
+  position: absolute;
+  right: 1%;
+  top: 3%;
+  z-index: 100
+}
+
 /*# sourceMappingURL=dashcore.css.map */

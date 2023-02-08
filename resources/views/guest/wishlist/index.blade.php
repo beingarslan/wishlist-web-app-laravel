@@ -8,143 +8,145 @@
 
 @section('content')
     <!-- header -->
-    <header class="header section mt-5 header section text-contrast  overlay-primary  parallax cover">
-        <div class="cover-img relative ">
-            <div class="main-img">
-                <img src="{{ $user->cover_image }}" class="img-fluid cover-image img-responsive" 
-                style="min-height: 12%;
-   min-width:100%;
-    max-height:15%;
-     max-width: 100%"  id="cover-image" alt="">
-<!--   style="background-repeat: no-repeat; background-position: center;" -->
-            </div>
-            <div class="img-btn position-absolute">
+    <!-- <header class="header section mt-5 header section text-contrast  overlay-primary  parallax cover"> -->
+    <div class="profileSection mt-6" sty>
+                <div class="editableCoverImage">
+                    <div class="coverImage">
+                    <img src="{{ $user->cover_image }}" class="img-fluid cover-image img-responsive" id="cover-image" alt="">
+                </div>
+                <div class="editImageButtonContainer" style="color:wheat;">
                 <div style='height: 0px;width: 0px; overflow:hidden;'>
-                    <input type="file" accept="image/*" id="fileInput" name="image" class="image" />
+            <input type="file" accept="image/*" id="fileInput" name="image" class="image" />
+        </div>
+        <button id="coverBtn" class="m-0 btn btn-primary btn-circle" onclick="fileInput.click();">
+            <i class='fa fa-camera'></i>
+        </button>
+        <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalLabel">Crop Image</h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
                 </div>
-                <button id="coverBtn" class="m-0 btn btn-primary btn-circle" onclick="fileInput.click();">
-                    <i class='fa fa-camera'></i>
-                </button>
-            </div>
-            <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog modal-lg" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="modalLabel">Crop Image</h5>
-                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">×</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="img-container">
-                                <div class="row">
-                                    <div class="col-md-8">
-                                        <img id="image" src="https://avatars0.githubusercontent.com/u/3456749">
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="preview"></div>
-                                    </div>
-                                </div>
+                <div class="modal-body">
+                    <div class="img-container">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <img id="image" src="https://avatars0.githubusercontent.com/u/3456749">
                             </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                            <button type="submit" class="btn btn-primary" id="crop">Crop</button>
+                            <div class="col-md-4">
+                                <div class="preview"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary" id="crop">Crop</button>
+                </div>
             </div>
         </div>
-        <div class="profile-img mx-3">
-            <div class="row mt-nn5  justify-content-start ">
-                <div class="col-2 order-1 mb-25">
-                    <div class="position-relative d-inline">
-                        <img class="img img-thumbnail rounded-pill imgSixtymin_max-120" 
-                            src="{{ $user->avatar }}" id="avatar-image" alt="$user->avatar">
-                        <div class="position-absolute top-50 start-100 translate-middle">
-                            <div style='height: 0px;width: 0px; overflow:hidden;'>
-                                <input type="file" accept="image/*" id="fileInput1" name="avatar" class="image" />
-                            </div>
-                            <button id="avatarBtn" class="m-0 rounded-circle mt-5 me-3 bg-primary border-white border text-fluid"
-                             onclick="fileInput1.click();">
-                               <i class='fa fa-camera text-white m-auto' class="img-responsive"></i>
-                           </button>
+    </div>
+                </div>
+                    </div>
+                    <div class="info">
+                        <div class="container flex">
+                            <div class="profilePictureContainer mt-lg-6 mb-sm-4">
+                                <div class="editable_profile_picture__container">
+                                    <div class="updateProfilePictureButtoncontainer">        
+                                    <div style='height: 0px;width: 0px; overflow:hidden;'>
+                        <input type="file" accept="image/*" id="fileInput1" name="avatar" class="image" />
+                    </div>
+                    <button id="avatarBtn" class="m-0 rounded-circle bg-primary border-white border text-fluid"
+                     onclick="fileInput1.click();">
+                       <i class='fa fa-camera text-white m-auto' class="img-responsive"></i>
+                   </button>
+                    </div>
+
+                    <div class="profilePicture">
+                    <img 
+                    src="{{ $user->avatar }}" id="avatar-image" alt="$user->avatar">
                         </div>
-                        <div class="position-absolute top-100 start-50 ms-9 w-100 mt-3 translate-middle "
-                         style="z-index:2;">
-                <button data-bs-toggle="modal" data-bs-target="#editModel"
-                    class="btn btn-primary py-2 text-capitalize text-center align-items-center">
-                    Edit profile
-                </button>
+                    </div>
+                </div>
+                <div class="container name">
+                    <div class="wishlistName">{{ $user->name }}</div>
+                    <div class="userName">
+                        <span>{{ $user->wishlist_name }}</span>
+                        <!-- <span class="text-white d-block text-capitalize mt-sm-5 mt-md-n2"
+                style="font-size: 1.5rem; font-weight: 600; z-index:2;"></span>
+            <span></span> -->
+                       
             </div>
-        
-            <div class="modal fade" id="editModel" tabindex="-1" aria-labelledby="editModel" aria-hidden="true">
+        </div>
+    </div>
+    <div class="profileMessage" style="z-index:2;">
+    <!-- <div class="col-md-12 text-center"> -->
+        <div class="message-form d-none">
+
+            <input name="description" class="messageContent" type="text" placeholder="Enter description">
+            <button class="submitMessage btn btn-sm border-0"> 
+                <i class="fa fa-check text-dark"></i>
+            </button>
+
+        </div>
+        <div class="message">
+            <p class="messageValue d-inline text-center align-items-center text-black">
+                {{ isset($user->description) ? $user->description : 'No description yet' }}
+            </p>
+            <button class="addMessage btn btn-sm border-0">
+                <i class="ms-2 fa fa-pencil-alt"></i>
+            </button>
+        </div>
+    <!-- </div> -->
+    </div>
+</div>
+<div class="editProfileButtonContainer">
+<button data-bs-toggle="modal" data-bs-target="#editModel"
+                        class="btn btn-primary py-2 text-capitalize text-center align-items-center">
+                        Edit profile
+                    </button>
+                    <div class="modal fade" id="editModel" tabindex="-1" aria-labelledby="editModel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title text-capitalize" id="exampleModalLabel">edit profile</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                aria-label="Close"></button>
+                   <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-capitalize" id="exampleModalLabel">edit profile</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <form method="POST" action="{{ route('user.update-profile') }}">
+                    @csrf
+                    <div class="modal-body text-black">
+                        <div class="form-group my-2">
+                            <label>Name</label>
+                            <input class="form-control @error('name') is-invalid @enderror" name="name"
+                                placeholder="Name" value="{{ $user->name }}" type="text">
                         </div>
-                        <form method="POST" action="{{ route('user.update-profile') }}">
-                            @csrf
-                            <div class="modal-body text-black">
-                                <div class="form-group my-2">
-                                    <label>Name</label>
-                                    <input class="form-control @error('name') is-invalid @enderror" name="name"
-                                        placeholder="Name" value="{{ $user->name }}" type="text">
-                                </div>
-                                <div class="form-group my-2">
-                                    <label>Wishlist Name</label>
-                                    <input class="form-control @error('wishlist_name') is-invalid @enderror"
-                                        name="wishlist_name" placeholder="Wishlist Name"
-                                        value="{{ $user->wishlist_name }}" type="text">
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary">Save changes</button>
-                            </div>
-                        </form>
+                        <div class="form-group my-2">
+                            <label>Wishlist Name</label>
+                            <input class="form-control @error('wishlist_name') is-invalid @enderror"
+                                name="wishlist_name" placeholder="Wishlist Name"
+                                value="{{ $user->wishlist_name }}" type="text">
+                        </div>
                     </div>
-                </div>
-            </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
                     </div>
-                </div>
-                <div class="col-md-8 col-sm-8 col-lg-8 mt-md-n2  mt-sm-n5 mt-2 order-2" style="z-index: 2; font-size: calc(14px + (26 - 14) * ((100vw - 300px) / (1600 - 300)));">
-                    <span class="text-white d-block text-capitalize mt-sm-5 mt-md-n2"
-                        style="font-size: 1.5rem; font-weight: 600; z-index:2;">{{ $user->name }}</span>
-                    <span>{{ $user->wishlist_name }}</span>
-                </div>
+                </form>
             </div>
         </div>
-        <div class="mb-4 mt-lg-n5 container">
-                <div class="col-md-12 text-center">
-                <div class="message-form d-none">
-
-                    <input name="description" class="messageContent" type="text" placeholder="Enter description">
-                    <button class="submitMessage btn btn-sm border-0"> 
-                        <i class="fa fa-check text-dark"></i>
-                    </button>
-
-                </div>
-                <div class="message">
-                    <p class="messageValue d-inline text-center align-items-center text-black">
-                        {{ isset($user->description) ? $user->description : 'No description yet' }}
-                    </p>
-                    <button class="addMessage btn btn-sm border-0">
-                        <i class="ms-2 fa fa-pencil-alt"></i>
-                    </button>
-                </div>
+    </div>
             </div>
-           
-        </div>
-    </header>
+           </div> 
+    <!-- </header> -->
     <!-- end header -->
 
     <!-- section payments -->
-    <section class="section section-payments">
+    <section class="section section-payments mt-5">
         <div class="container py-2 text-center text-md-start">
             <div class="row">
                 <div class="col-md-6">
