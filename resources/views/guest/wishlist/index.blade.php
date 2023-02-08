@@ -11,9 +11,12 @@
     <header class="header section mt-5 header section text-contrast  overlay-primary  parallax cover">
         <div class="cover-img relative ">
             <div class="main-img">
-                <img src="{{ $user->cover_image }}" class="img-fluid cover-image img-responsive"
-                    style="background-repeat: no-repeat; background-position: center;" id="cover-image" alt="">
-
+                <img src="{{ $user->cover_image }}" class="img-fluid cover-image img-responsive" 
+                style="min-height: 12%;
+   min-width:100%;
+    max-height:15%;
+     max-width: 100%"  id="cover-image" alt="">
+<!--   style="background-repeat: no-repeat; background-position: center;" -->
             </div>
             <div class="img-btn position-absolute">
                 <div style='height: 0px;width: 0px; overflow:hidden;'>
@@ -68,7 +71,8 @@
                                <i class='fa fa-camera text-white m-auto' class="img-responsive"></i>
                            </button>
                         </div>
-                        <div class="position-absolute top-100 start-50 ms-9 w-100 mt-3 translate-middle" style="z-index:2;">
+                        <div class="position-absolute top-100 start-50 ms-9 w-100 mt-3 translate-middle "
+                         style="z-index:2;">
                 <button data-bs-toggle="modal" data-bs-target="#editModel"
                     class="btn btn-primary py-2 text-capitalize text-center align-items-center">
                     Edit profile
@@ -116,7 +120,7 @@
             </div>
         </div>
         <div class="mb-4 mt-lg-n5 container">
-                <div class="col-md-5 ms-md-9">
+                <div class="col-md-12 text-center">
                 <div class="message-form d-none">
 
                     <input name="description" class="messageContent" type="text" placeholder="Enter description">
