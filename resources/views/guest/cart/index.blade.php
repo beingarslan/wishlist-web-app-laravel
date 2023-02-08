@@ -77,7 +77,11 @@ $total_price = 0;
                                <td></td>
                                <td style="align:right">
 
-                                  <a href="#" class="btn btn-success">Checkout</a>
+                                <form method='post' action='{{route('cart.checkout')}}'>
+                                  @csrf
+                                    <input type='hidden' name='amount' value="{{ $total_price }}" />
+                                    <button type="submit" class="btn btn-success">Checkout</button>
+                                 </form>
                                </td>
                             </tr>
                       </tbody>

@@ -52,4 +52,10 @@ class CartController extends Controller
         ]);
         return back();
       }
+
+      public function checkout(Request $request)
+      {
+        $amount = $request->amount;
+        return view('guest.cart.checkout', compact('amount'));
+      }
 }

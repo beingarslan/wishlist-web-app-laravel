@@ -9,6 +9,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GuestWishlistController;
+use App\Http\Controllers\StripePaymentController;
 use App\Http\Controllers\laravel_example\UserManagement;
 
 
@@ -41,6 +42,11 @@ Route::group(
 
 
 Auth::routes();
+
+Route::controller(StripePaymentController::class)->group(function(){
+  Route::get('stripe', 'stripe');
+  Route::post('stripe', 'stripePost')->name('stripe.post');
+});
 
 Route::group(
     [
@@ -139,6 +145,8 @@ Route::group(
             Route::get('/index', [CartController::class, 'index'])->name('index');
             Route::post('/remove', [CartController::class, 'remove'])->name('remove');
             Route::post('/update', [CartController::class, 'update'])->name('update');
+            Route::post('/checkout', [CartController::class, 'checkout'])->name('checkout');
+
 
 
             // Route::post('/update', [GuestWishlistController::class, 'update'])->name('update');
